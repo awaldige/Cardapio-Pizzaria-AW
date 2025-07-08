@@ -16,8 +16,6 @@ Carrossel de Imagens: Destaque suas melhores pizzas e ambiente com um carrossel 
 
 Formas de Pagamento: Indique as opções de pagamento aceitas.
 
-Localização com Mapa: Mostre a localização da pizzaria via Google Maps.
-
 Informações de Contato: Disponibilize telefone, WhatsApp, e-mail e redes sociais.
 
 Design Responsivo: O site se adapta a diferentes tamanhos de tela (desktops, tablets e celulares).
