@@ -51,5 +51,12 @@ Basta abrir o arquivo index.html diretamente no seu navegador de preferência. N
 🤝 Contribuições
 Contribuições são bem-vindas! Se você tiver sugestões, melhorias ou encontrar bugs, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-📄 Licença
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes.
+## 📄 Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE) - veja o arquivo `LICENSE` para mais detalhes.
+
+
+
+## 👨‍💻 Desenvolvedor
+
+Desenvolvido com paixão por André Waldige.
