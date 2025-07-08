@@ -1,0 +1,482 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #8B0000; /* Vermelho escuro, cor de pizza */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+header .logo {
+    width: 80px; /* Ajuste o tamanho do seu logo */
+    height: auto;
+    border-radius: 50%; /* Se for um logo redondo */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+header nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+h2, h3 {
+    color: #CC0000; /* Vermelho mais vibrante */
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+/* Estilos para o Carrossel */
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    width: 100%;
+    display: none;
+    object-fit: cover;
+    max-height: 400px;
+    border-radius: 8px;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+/* Estilos para a Busca */
+#search {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#search input {
+    width: 80%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 1rem;
+    max-width: 400px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o Menu */
+.menu-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Organiza nome/preço e botão em coluna */
+    justify-content: space-between; /* Espaço entre o conteúdo e o botão */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    min-height: 120px; /* Garante uma altura mínima para itens com nomes mais curtos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Empurra o botão para baixo, alinhando-o */
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    text-align: center;
+    font-weight: bold;
+}
+
+.menu-item button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para Resumo do Pedido */
+#order-summary {
+    background-color: #e6ffe6;
+    border: 1px solid #c8e6c9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+#order-list {
+    list-style: none;
+    padding: 0;
+}
+
+#order-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+#order-list li:last-child {
+    border-bottom: none;
+}
+
+#order-list .remove-from-order {
+    background-color: #f44336; /* Vermelho para remover */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+#order-list .remove-from-order:hover {
+    background-color: #da190b;
+}
+
+#total-price {
+    font-weight: bold;
+    color: #CC0000;
+    font-size: 1.3rem;
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #c8e6c9;
+}
+
+
+/* Estilos para Finalizar Pedido */
+#checkout button {
+    display: block;
+    width: 80%;
+    max-width: 350px;
+    margin: 25px auto;
+    padding: 18px 25px;
+    background-color: #008CBA; /* Azul para "Finalizar Pedido" */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#checkout button:hover {
+    background-color: #007bb5;
+    transform: translateY(-2px);
+}
+
+/* Estilos para Formas de Pagamento */
+#payment-methods .payment-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#payment-methods label {
+    background-color: #f0f0f0;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap; /* Impede que o texto quebre linha */
+}
+
+#payment-methods label:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+}
+
+#payment-methods input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+#payment-methods input[type="radio"]:checked + label {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #28a745;
+}
+
+.payment-info {
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Estilos para Localização */
+#location {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#location address {
+    margin-bottom: 25px;
+    font-style: normal;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.map-container {
+    position: relative;
+    padding-bottom: 50%; /* Proporção 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Estilos para Contato */
+#contact {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.contact-list li {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #444;
+}
+
+.contact-list li i {
+    color: #CC0000;
+    font-size: 1.4rem;
+}
+
+.contact-list a {
+    color: #008CBA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+    color: #005f7c;
+    text-decoration: underline;
+}
+
+/* Rodapé */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center; /* Garante que o texto esteja centralizado */
+    padding: 25px;
+    margin-top: 40px;
+    font-size: 0.95rem;
+    border-top: 5px solid #CC0000;
+}
+
+footer p {
+    margin: 8px 0;
+}
+
+/* Classes de Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .carousel-button {
+        padding: 5px 10px;
+        font-size: 1.2rem;
+    }
+
+    .menu-list {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: unset; /* Remove min-height em telas pequenas se não for mais necessário */
+    }
+
+    .menu-item button {
+        margin-top: 15px;
+        width: 80%;
+        max-width: 250px;
+    }
+
+    #search input {
+        width: 90%;
+    }
+
+    #checkout button {
+        width: 90%;
+    }
+
+    #payment-methods .payment-options {
+        flex-direction: column;
+    }
+
+    #payment-methods label {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+}
