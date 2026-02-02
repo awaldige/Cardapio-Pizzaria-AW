@@ -1,60 +1,126 @@
-🍕 Pizzaria AW - Cardápio Online
-Bem-vindo ao repositório do site de cardápio online da Pizzaria AW! Este projeto visa fornecer aos clientes uma forma fácil e interativa de visualizar o cardápio, montar seus pedidos e finalizá-los diretamente pela página.
+🍕 Pizzaria AW — Cardápio Online
+
+Bem-vindo ao repositório do Pizzaria AW, um cardápio online moderno e interativo que permite aos clientes visualizar produtos, montar pedidos e finalizar compras diretamente pelo site.
+
+O projeto foi desenvolvido como demonstração prática de habilidades em HTML, CSS e JavaScript, focando em experiência do usuário e responsividade.
+
+🌐 Demonstração Online
+
+🔗https://cardapio-pizzaria-aw.vercel.app/
 
 ✨ Funcionalidades
-Cardápio Interativo: Navegue por categorias como Pizzas, Bebidas e Doces.
+🍕 Cardápio Digital
 
-Adicionar ao Pedido: Adicione itens facilmente ao seu carrinho.
+Navegação por categorias: Pizzas, Bebidas e Sobremesas
 
-Resumo do Pedido: Visualize os itens selecionados e o total do pedido em tempo real.
+Busca rápida de produtos
 
-Remover Itens: Remova itens do pedido com facilidade.
+🛒 Pedido Interativo
 
-Busca de Itens: Pesquise rapidamente por qualquer item no cardápio.
+Adicionar itens ao carrinho
 
-Carrossel de Imagens: Destaque suas melhores pizzas e ambiente com um carrossel dinâmico.
+Remover itens facilmente
 
-Formas de Pagamento: Indique as opções de pagamento aceitas.
+Atualização automática do valor total
 
-Informações de Contato: Disponibilize telefone, WhatsApp, e-mail e redes sociais.
+📦 Finalização de Pedido
 
-Design Responsivo: O site se adapta a diferentes tamanhos de tela (desktops, tablets e celulares).
+Simulação de confirmação de pedido
 
-Finalização de Pedido (no site): Para o propósito desta versão, a finalização do pedido é simulada no site, exibindo uma confirmação e limpando o carrinho.
+Limpeza automática do carrinho após finalizar
+
+🖼️ Experiência Visual
+
+Carrossel de imagens com destaques do cardápio
+
+Layout moderno e intuitivo
+
+📱 Responsividade
+
+Funciona perfeitamente em:
+
+Desktop
+
+Tablets
+
+Smartphones
+
+📞 Contato e Informações
+
+Telefone e WhatsApp
+
+Redes sociais
+
+Informações da pizzaria
+
+Formas de pagamento aceitas
 
 🚀 Tecnologias Utilizadas
-HTML5: Estrutura semântica do conteúdo.
 
-CSS3: Estilização e responsividade (com uso de Flexbox e Grid para layout).
+HTML5 — Estrutura e semântica
 
-JavaScript (Vanilla JS): Interatividade do cardápio, gestão do pedido, busca e carrossel de imagens.
+CSS3 — Layout moderno e responsivo (Flexbox e Grid)
 
-Font Awesome: Para ícones úteis (telefone, WhatsApp, etc.).
+JavaScript (Vanilla) — Interações e lógica do carrinho
 
-⚙️ Como Usar/Executar Localmente
-Siga estes passos para ter o projeto rodando em sua máquina:
+Font Awesome — Ícones da interface
 
-Clone o Repositório:
+📸 Prévia do Projeto
 
-Bash
+![IMG_1300](https://github.com/user-attachments/assets/f639879f-3be1-49a3-ac68-3e38cefc8f21)
+![IMG_1301](https://github.com/user-attachments/assets/c586bb03-845c-4323-8aa6-47879083c5e6)
+![IMG_1302](https://github.com/user-attachments/assets/43faadbe-3890-4eb0-a23a-d178286bf0dc)
+![IMG_1303](https://github.com/user-attachments/assets/f7c1636b-6030-4a55-a19f-99dbf615d9e4)
+![IMG_1304](https://github.com/user-attachments/assets/746ff0e6-8af3-4d85-b3eb-f7061aabd4a5)
+![IMG_1305](https://github.com/user-attachments/assets/fad100ca-8c6a-48e4-9e4e-d50bd3baf7d2)
+![IMG_1306](https://github.com/user-attachments/assets/4d3ec2d1-975c-4594-85dc-ea25cff9ccae)
+![IMG_1308](https://github.com/user-attachments/assets/8d37c496-9e7d-4eb9-a9e7-9e2cc2ab2cb6)
+
+
+📂 Estrutura do Projeto
+Cardapio-Pizzaria-AW/
+│
+├── index.html
+├── style.css
+├── script.js
+├── imagens/
+└── README.md
+
+▶️ Como Executar Localmente
+
+Clone o repositório:
 
 git clone https://github.com/awaldige/Cardapio-Pizzaria-AW.git
- cd Cardapio-Pizzaria-AW
-
-Abra o index.html:
-Basta abrir o arquivo index.html diretamente no seu navegador de preferência. Não é necessário um servidor web para executar este projeto, pois ele utiliza apenas tecnologias front-end.
+cd Cardapio-Pizzaria-AW
 
 
+Abra o arquivo index.html no navegador.
+
+Não é necessário servidor backend.
+
+🔮 Melhorias Futuras
+
+Integração com WhatsApp para envio automático do pedido
+
+Sistema real de pagamento online
+
+Área administrativa para gestão do cardápio
+
+Backend para persistência de pedidos
+
+PWA para funcionamento offline
 
 🤝 Contribuições
-Contribuições são bem-vindas! Se você tiver sugestões, melhorias ou encontrar bugs, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-## 📄 Licença
+Sugestões e melhorias são bem-vindas!
+Abra uma issue ou envie um pull request.
 
-Este projeto está licenciado sob a [Licença MIT](LICENSE) - veja o arquivo `LICENSE` para mais detalhes.
+📄 Licença
 
+Distribuído sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
+👨‍💻 Autor
 
-## 👨‍💻 Desenvolvedor
+Desenvolvido por André Waldige
 
-Desenvolvido com paixão por André Waldige.
+🔗 GitHub: https://github.com/awaldige
