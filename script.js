@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const payment = document.querySelector('input[name="payment-method"]:checked').value;
         const total = totalPriceSpan.textContent;
-        const fone = "5511987654321"; // SEU NUMERO AQUI
+        const fone = "5511985878638"; 
 
         let msg = `*Novo Pedido - Pizzaria AW*%0A%0A`;
         order.forEach(item => {
