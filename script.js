@@ -1,43 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search-input');
+    let order = [];
     const orderList = document.getElementById('order-list');
     const totalPriceSpan = document.getElementById('total-price');
-    const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
-    
-    let order = [];
+    const searchInput = document.getElementById('search-input');
 
-    // --- LOGICA DE PEDIDOS ---
-
-    // Delegação de evento para o botão Adicionar (funciona sempre)
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('add-to-order')) {
-            const menuItem = event.target.closest('.menu-item');
-            const name = menuItem.dataset.name;
-            const price = menuItem.dataset.price;
-            addItemToOrder(name, price);
+    // 1. Adicionar Item
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('add-to-order')) {
+            const item = e.target.closest('.menu-item');
+            order.push({
+                name: item.dataset.name,
+                price: parseFloat(item.dataset.price)
+            });
+            renderOrder();
         }
     });
 
-    function addItemToOrder(name, price) {
-        order.push({ name, price: parseFloat(price) });
-        renderOrder();
-    }
+    // 2. Remover Item
+    orderList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-from-order')) {
+            const index = e.target.dataset.index;
+            order.splice(index, 1);
+            renderOrder();
+        }
+    });
 
-    function removeItemFromOrder(index) {
-        order.splice(index, 1);
-        renderOrder();
-    }
-
+    // 3. Renderizar Pedido
     function renderOrder() {
         orderList.innerHTML = '';
         let total = 0;
-
+        
         if (order.length === 0) {
-            orderList.innerHTML = '<li>Nenhum item adicionado ao pedido ainda.</li>';
+            orderList.innerHTML = '<li>Carrinho vazio...</li>';
         } else {
             order.forEach((item, index) => {
                 const li = document.createElement('li');
-                li.innerHTML = `${item.name} - R$${item.price.toFixed(2)} <button class="remove-from-order" data-index="${index}">Remover</button>`;
+                li.innerHTML = `
+                    ${item.name} - R$${item.price.toFixed(2)}
+                    <button class="remove-from-order" data-index="${index}">x</button>
+                `;
                 orderList.appendChild(li);
                 total += item.price;
             });
@@ -45,65 +46,51 @@ document.addEventListener('DOMContentLoaded', () => {
         totalPriceSpan.textContent = total.toFixed(2);
     }
 
-    // Clique para remover
-    orderList.addEventListener('click', (event) => {
-        if (event.target.classList.contains('remove-from-order')) {
-            const index = event.target.dataset.index;
-            removeItemFromOrder(index);
-        }
-    });
-
-    // --- BUSCA ---
+    // 4. Busca
     searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
-        document.querySelectorAll('.menu-item').forEach(item => {
-            const text = item.dataset.name.toLowerCase();
-            item.style.display = text.includes(term) ? 'flex' : 'none';
+        document.querySelectorAll('.menu-item').forEach(el => {
+            const name = el.dataset.name.toLowerCase();
+            el.style.display = name.includes(term) ? 'block' : 'none';
         });
     });
 
-    // --- CARROSSEL ---
-    const slides = document.querySelectorAll('.carousel-item');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        slides.forEach(s => s.classList.remove('active'));
-        slides[index].classList.add('active');
-    }
-
-    document.querySelector('.next').addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    });
-
-    document.querySelector('.prev').addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    });
-
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }, 5000);
-
-    // --- WHATSAPP ---
-    finalizarPedidoBtn.addEventListener('click', () => {
-        if (order.length === 0) {
-            alert('Seu pedido está vazio!');
-            return;
-        }
+    // 5. WhatsApp e Limpar
+    document.getElementById('finalizar-pedido').addEventListener('click', () => {
+        if (order.length === 0) return alert("Adicione itens primeiro!");
 
         const payment = document.querySelector('input[name="payment-method"]:checked').value;
-        const total = totalPriceSpan.textContent;
-        const fone = "5511985878638"; 
-
+        const phone = "5511987654321"; // Ajuste seu número aqui
+        
         let msg = `*Novo Pedido - Pizzaria AW*%0A%0A`;
-        order.forEach(item => {
-            msg += `- ${item.name} (R$${item.price.toFixed(2)})%0A`;
-        });
-        msg += `%0A*Total:* R$ ${total}`;
-        msg += `%0A*Pagamento:* ${payment}`;
+        order.forEach(i => msg += `• ${i.name} (R$${i.price.toFixed(2)})%0A`);
+        msg += `%0A*Total:* R$${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
 
-        window.open(`https://wa.me/${fone}?text=${msg}`, '_blank');
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+
+        // Limpeza automática
+        setTimeout(() => {
+            if(confirm("Deseja limpar seu pedido atual?")) {
+                order = [];
+                renderOrder();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }, 1500);
     });
+
+    // 6. Carrossel Simples
+    const slides = document.querySelectorAll('.carousel-item');
+    let current = 0;
+    function next() {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+    }
+    document.querySelector('.next').onclick = next;
+    document.querySelector('.prev').onclick = () => {
+        slides[current].classList.remove('active');
+        current = (current - 1 + slides.length) % slides.length;
+        slides[current].classList.add('active');
+    };
+    setInterval(next, 4000);
 });
