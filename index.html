@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pizzaria AW | Cardápio Online</title>
+    <title>Pizzaria AW | Painel de Pedidos</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,102 +28,19 @@
     <main>
         <section id="gallery" class="carousel-container">
             <div class="carousel-slides">
-                <img src="pepperoni.jpg" alt="Pizza" class="carousel-item active">
-                <img src="Pizza variadas.jpg" alt="Pizzas" class="carousel-item">
-                <img src="deliciosa-pizza.jpg" alt="Especial" class="carousel-item">
+                <img src="pepperoni.jpg" class="carousel-item active">
+                <img src="Pizza variadas.jpg" class="carousel-item">
             </div>
         </section>
 
         <section id="search" class="sticky-search">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="Pesquisar no cardápio...">
+                <input type="text" id="search-input" placeholder="Pesquisar item...">
             </div>
         </section>
 
-        <section id="menu">
-            <div class="category-group">
-                <h3 class="category-title"><i class="fas fa-pizza-slice"></i> Pizzas</h3>
-                <div class="items-grid">
-                    <div class="menu-card" data-name="Pizza Margherita" data-price="25.00">
-                        <div class="card-info"><h4>Pizza Margherita</h4><span class="price">R$ 25,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza de Mussarela" data-price="30.00">
-                        <div class="card-info"><h4>Pizza de Mussarela</h4><span class="price">R$ 30,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Portuguesa" data-price="32.00">
-                        <div class="card-info"><h4>Pizza Portuguesa</h4><span class="price">R$ 32,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Frango com Catupiry" data-price="30.00">
-                        <div class="card-info"><h4>Frango com Catupiry</h4><span class="price">R$ 30,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Pepperoni" data-price="30.00">
-                        <div class="card-info"><h4>Pizza Pepperoni</h4><span class="price">R$ 30,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Calabresa" data-price="32.00">
-                        <div class="card-info"><h4>Pizza Calabresa</h4><span class="price">R$ 32,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Quatro Queijos" data-price="35.00">
-                        <div class="card-info"><h4>Quatro Queijos</h4><span class="price">R$ 35,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza Vegetariana" data-price="28.00">
-                        <div class="card-info"><h4>Pizza Vegetariana</h4><span class="price">R$ 28,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza de Rúcula" data-price="40.00">
-                        <div class="card-info"><h4>Pizza de Rúcula</h4><span class="price">R$ 40,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza de Atum" data-price="30.00">
-                        <div class="card-info"><h4>Pizza de Atum</h4><span class="price">R$ 30,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza de Camarão" data-price="50.00">
-                        <div class="card-info"><h4>Pizza de Camarão</h4><span class="price">R$ 50,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="menu-card" data-name="Pizza de Palmito" data-price="35.00">
-                        <div class="card-info"><h4>Pizza de Palmito</h4><span class="price">R$ 35,00</span></div>
-                        <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-group">
-                <h3 class="category-title"><i class="fas fa-wine-glass"></i> Bebidas</h3>
-                <div class="items-grid">
-                    <div class="menu-card" data-name="Água Mineral" data-price="3.00"><div class="card-info"><h4>Água Mineral</h4><span class="price">R$ 3,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Refrigerante Lata" data-price="5.00"><div class="card-info"><h4>Refrigerante Lata</h4><span class="price">R$ 5,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Cerveja Lata" data-price="8.00"><div class="card-info"><h4>Cerveja Lata</h4><span class="price">R$ 8,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Uva" data-price="6.00"><div class="card-info"><h4>Suco de Uva</h4><span class="price">R$ 6,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Morango" data-price="7.50"><div class="card-info"><h4>Suco de Morango</h4><span class="price">R$ 7,50</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Maracujá" data-price="6.80"><div class="card-info"><h4>Suco de Maracujá</h4><span class="price">R$ 6,80</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Laranja" data-price="5.50"><div class="card-info"><h4>Suco de Laranja</h4><span class="price">R$ 5,50</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Limão" data-price="5.50"><div class="card-info"><h4>Suco de Limão</h4><span class="price">R$ 5,50</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Suco de Abacaxi" data-price="7.00"><div class="card-info"><h4>Suco de Abacaxi</h4><span class="price">R$ 7,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                </div>
-            </div>
-
-            <div class="category-group">
-                <h3 class="category-title"><i class="fas fa-cookie"></i> Sobremesas</h3>
-                <div class="items-grid">
-                    <div class="menu-card" data-name="Pudim" data-price="10.00"><div class="card-info"><h4>Pudim</h4><span class="price">R$ 10,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Torta de Morango" data-price="12.00"><div class="card-info"><h4>Torta de Morango</h4><span class="price">R$ 12,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Torta de Limão" data-price="12.00"><div class="card-info"><h4>Torta de Limão</h4><span class="price">R$ 12,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Bolo de Chocolate" data-price="15.00"><div class="card-info"><h4>Bolo de Chocolate</h4><span class="price">R$ 15,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Pavê" data-price="12.00"><div class="card-info"><h4>Pavê</h4><span class="price">R$ 12,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Mousse de Maracujá" data-price="10.00"><div class="card-info"><h4>Mousse de Maracujá</h4><span class="price">R$ 10,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                    <div class="menu-card" data-name="Gelatina" data-price="5.00"><div class="card-info"><h4>Gelatina</h4><span class="price">R$ 5,00</span></div><button class="add-btn add-to-order"><i class="fas fa-plus"></i></button></div>
-                </div>
-            </div>
-        </section>
+        <section id="menu-container"></section>
 
         <section id="order-summary" class="order-container">
             <h3><i class="fas fa-shopping-basket"></i> Meu Carrinho</h3>
@@ -132,38 +49,14 @@
                 <span>Total:</span>
                 <span id="total-price">R$ 0,00</span>
             </div>
-            
-            <div class="checkout-area">
-                <p>Pagamento:</p>
-                <div class="payment-grid">
-                    <label class="pay-label"><input type="radio" name="payment-method" value="Pix" checked><span>Pix</span></label>
-                    <label class="pay-label"><input type="radio" name="payment-method" value="Cartão"><span>Cartão</span></label>
-                    <label class="pay-label"><input type="radio" name="payment-method" value="Dinheiro"><span>Dinheiro</span></label>
-                </div>
-                <button id="finalizar-pedido" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Finalizar Pedido
-                </button>
-            </div>
-        </section>
-
-        <section id="location" class="info-section">
-            <p><i class="fas fa-map-marker-alt"></i> Rua da Pizza, 123 - Centro, SP</p>
+            <button id="finalizar-pedido" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido
+            </button>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="footer-grid">
-            <div class="footer-info">
-                <h4>Pizzaria AW</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Pizzaria AW | Desenvolvido por André Waldige</p>
-        </div>
+        <p>&copy; 2026 Pizzaria AW | Desenvolvido por André Waldige</p>
     </footer>
 
     <script src="script.js"></script>
