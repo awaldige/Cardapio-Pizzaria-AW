@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (order.length === 0) return alert("Adicione itens ao carrinho!");
 
         const payment = document.querySelector('input[name="payment-method"]:checked').value;
-        const phone = "5511987654321"; // Seu número aqui
+        const phone = "5511985878638"; 
         
         let msg = `*Pedido Pizzaria AW*%0A%0A`;
         order.forEach(i => msg += `• ${i.name} (R$${i.price.toFixed(2)})%0A`);
