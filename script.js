@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let msg = `*Pedido Pizzaria AW*%0A%0A`;
         order.forEach(i => msg += `• ${i.name}%0A`);
         msg += `%0A*Total:* R$ ${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
-        window.open(`https://wa.me/5511987654321?text=${msg}`, '_blank');
+        window.open(`https://wa.me/5511985878638?text=${msg}`, '_blank');
 
         setTimeout(() => {
             if(confirm("Deseja limpar o carrinho para um novo pedido?")) {
