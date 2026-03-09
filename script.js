@@ -110,32 +110,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // Renderiza o pedido inicial vazio
     renderOrder();
 
-    // --- MUDANÇA AQUI: Funcionalidade do botão Finalizar Pedido ---
     finalizarPedidoBtn.addEventListener('click', () => {
         if (order.length === 0) {
             alert('Seu pedido está vazio! Adicione alguns itens antes de finalizar.');
             return;
         }
 
-        let paymentMethod = document.querySelector('input[name="payment-method"]:checked');
-        let paymentInfo = paymentMethod ? `Forma de Pagamento: ${paymentMethod.value}` : 'Forma de Pagamento: Não selecionada';
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+        const total = totalPriceSpan.textContent;
+        const telefonePizzaria = "5511987654321"; // Coloque o número aqui (apenas números)
 
-        // Aqui você pode adicionar a lógica para "finalizar" o pedido
-        // Por exemplo, enviar os dados para um servidor, exibir uma mensagem, limpar o carrinho, etc.
+        // 1. Construir a mensagem de texto
+        let mensagem = `*Novo Pedido - Pizzaria AW*%0A`;
+        mensagem += `----------------------------%0A`;
+        
+        order.forEach(item => {
+            mensagem += `• ${item.name} - R$${item.price.toFixed(2)}%0A`;
+        });
 
-        // Exemplo: Exibir uma mensagem de sucesso e limpar o pedido
-        alert(`Pedido Finalizado com Sucesso!\n\nSeu pedido no valor de R$${totalPriceSpan.textContent} foi registrado.\n${paymentInfo}\n\nAguarde a confirmação da pizzaria.`);
+        mensagem += `----------------------------%0A`;
+        mensagem += `*Total:* R$${total}%0A`;
+        mensagem += `*Pagamento:* ${paymentMethod}%0A`;
 
-        // Opcional: Limpar o pedido após a finalização
-        order = []; // Esvazia o array do pedido
-        renderOrder(); // Atualiza a exibição para mostrar o pedido vazio
+        // 2. Criar o link do WhatsApp
+        // O encodeURIComponent garante que caracteres especiais não quebrem o link
+        const whatsappUrl = `https://wa.me/${telefonePizzaria}?text=${mensagem}`;
 
-        // Opcional: Rolagem para o topo ou para uma seção de confirmação
-        // window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 3. Abrir o WhatsApp
+        window.open(whatsappUrl, '_blank');
+
+        // Opcional: Limpar o pedido após enviar
+        // order = [];
+        // renderOrder();
     });
-    // --- FIM DA MUDANÇA ---
-});
-
+    
 
 
   
