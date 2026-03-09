@@ -2,21 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let order = [];
     const orderList = document.getElementById('order-list');
     const totalPriceSpan = document.getElementById('total-price');
-    const searchInput = document.getElementById('search-input');
 
-    // 1. Adicionar Item
+    // Adicionar Item (Delegação de Evento)
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('add-to-order')) {
             const item = e.target.closest('.menu-item');
-            order.push({
-                name: item.dataset.name,
-                price: parseFloat(item.dataset.price)
-            });
+            const name = item.dataset.name;
+            const price = parseFloat(item.dataset.price);
+            order.push({ name, price });
             renderOrder();
         }
     });
 
-    // 2. Remover Item
+    // Remover Item
     orderList.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-from-order')) {
             const index = e.target.dataset.index;
@@ -25,20 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Renderizar Pedido
     function renderOrder() {
         orderList.innerHTML = '';
         let total = 0;
-        
         if (order.length === 0) {
             orderList.innerHTML = '<li>Carrinho vazio...</li>';
         } else {
             order.forEach((item, index) => {
                 const li = document.createElement('li');
-                li.innerHTML = `
-                    ${item.name} - R$${item.price.toFixed(2)}
-                    <button class="remove-from-order" data-index="${index}">x</button>
-                `;
+                li.innerHTML = `<span>${item.name}</span> <span>R$ ${item.price.toFixed(2)} <button class="remove-from-order" data-index="${index}" style="background:red; color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; margin-left:10px;">X</button></span>`;
                 orderList.appendChild(li);
                 total += item.price;
             });
@@ -46,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         totalPriceSpan.textContent = total.toFixed(2);
     }
 
-    // 4. Busca
-    searchInput.addEventListener('input', (e) => {
+    // Busca
+    document.getElementById('search-input').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         document.querySelectorAll('.menu-item').forEach(el => {
             const name = el.dataset.name.toLowerCase();
@@ -55,30 +48,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. WhatsApp e Limpar
+    // WhatsApp + Limpeza
     document.getElementById('finalizar-pedido').addEventListener('click', () => {
-        if (order.length === 0) return alert("Adicione itens primeiro!");
-
+        if (order.length === 0) return alert("Adicione itens!");
         const payment = document.querySelector('input[name="payment-method"]:checked').value;
-        const phone = "5511987654321"; // Ajuste seu número aqui
-        
-        let msg = `*Novo Pedido - Pizzaria AW*%0A%0A`;
-        order.forEach(i => msg += `• ${i.name} (R$${i.price.toFixed(2)})%0A`);
-        msg += `%0A*Total:* R$${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
+        let msg = `*Pedido Pizzaria AW*%0A%0A`;
+        order.forEach(i => msg += `• ${i.name}%0A`);
+        msg += `%0A*Total:* R$ ${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
+        window.open(`https://wa.me/5511987654321?text=${msg}`, '_blank');
 
-        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-
-        // Limpeza automática
         setTimeout(() => {
-            if(confirm("Deseja limpar seu pedido atual?")) {
+            if(confirm("Deseja limpar o carrinho para um novo pedido?")) {
                 order = [];
                 renderOrder();
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
-        }, 1500);
+        }, 2000);
     });
 
-    // 6. Carrossel Simples
+    // Carousel
     const slides = document.querySelectorAll('.carousel-item');
     let current = 0;
     function next() {
@@ -86,11 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
         current = (current + 1) % slides.length;
         slides[current].classList.add('active');
     }
+    setInterval(next, 4000);
     document.querySelector('.next').onclick = next;
     document.querySelector('.prev').onclick = () => {
         slides[current].classList.remove('active');
         current = (current - 1 + slides.length) % slides.length;
         slides[current].classList.add('active');
     };
-    setInterval(next, 4000);
 });
