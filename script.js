@@ -1,9 +1,87 @@
+// ==========================================
+// PAINEL DE CONTROLE DO CARDÁPIO
+// ==========================================
+const DATA = [
+    {
+        categoria: "Pizzas",
+        icone: "fa-pizza-slice",
+        itens: [
+            { nome: "Margherita", preco: 25.00, desc: "Molho, mussarela e manjericão" },
+            { nome: "Mussarela", preco: 30.00, desc: "Mussarela premium e orégano" },
+            { nome: "Portuguesa", preco: 32.00, desc: "Ovo, presunto, cebola e ervilha" },
+            { nome: "Frango com Catupiry", preco: 30.00, desc: "Frango desfiado com catupiry" },
+            { nome: "Pepperoni", preco: 30.00, desc: "Mussarela e fatias de pepperoni" },
+            { nome: "Calabresa", preco: 32.00, desc: "Calabresa fatiada e cebola" },
+            { nome: "Quatro Queijos", preco: 35.00, desc: "Mussarela, provolone, parmesão e gorgonzola" },
+            { nome: "Vegetariana", preco: 28.00, desc: "Mix de legumes selecionados" },
+            { nome: "Rúcula", preco: 40.00, desc: "Rúcula fresca e tomate seco" },
+            { nome: "Atum", preco: 30.00, desc: "Atum sólido e cebola" },
+            { nome: "Camarão", preco: 50.00, desc: "Camarão médio e molho especial" },
+            { nome: "Palmito", preco: 35.00, desc: "Palmito macio e mussarela" }
+        ]
+    },
+    {
+        categoria: "Bebidas",
+        icone: "fa-wine-glass",
+        itens: [
+            { nome: "Água Mineral", preco: 3.00, desc: "500ml" },
+            { nome: "Refrigerante Lata", preco: 5.00, desc: "350ml" },
+            { nome: "Cerveja Lata", preco: 8.00, desc: "Heineken/Brahma" },
+            { nome: "Suco de Uva", preco: 6.00, desc: "Natural 300ml" },
+            { nome: "Suco de Morango", preco: 7.50, desc: "Natural 300ml" },
+            { nome: "Suco de Maracujá", preco: 6.80, desc: "Natural 300ml" },
+            { nome: "Suco de Laranja", preco: 5.50, desc: "Natural 300ml" },
+            { nome: "Suco de Limão", preco: 5.50, desc: "Natural 300ml" },
+            { nome: "Suco de Abacaxi", preco: 7.00, desc: "Natural 300ml" }
+        ]
+    },
+    {
+        categoria: "Sobremesas",
+        icone: "fa-cookie",
+        itens: [
+            { nome: "Pudim", preco: 10.00, desc: "Fatia artesanal" },
+            { nome: "Torta de Morango", preco: 12.00, desc: "Massa crocante" },
+            { nome: "Torta de Limão", preco: 12.00, desc: "Creme de limão siciliano" },
+            { nome: "Bolo de Chocolate", preco: 15.00, desc: "Cacau 70%" },
+            { nome: "Pavê", preco: 12.00, desc: "Receita da casa" },
+            { nome: "Mousse de Maracujá", preco: 10.00, desc: "Aerado e azedinho" },
+            { nome: "Gelatina", preco: 5.00, desc: "Frutas variadas" }
+        ]
+    }
+];
+
+// ==========================================
+// LÓGICA DO SISTEMA 
+// ==========================================
+
 document.addEventListener('DOMContentLoaded', () => {
     let order = [];
-    const cartCount = document.getElementById('cart-count');
-    const totalPriceSpan = document.getElementById('total-price');
+    const menuContainer = document.getElementById('menu-container');
 
-    // Adicionar Item
+    // Função para renderizar o cardápio
+    function renderMenu() {
+        menuContainer.innerHTML = DATA.map(cat => `
+            <div class="category-group">
+                <h3 class="category-title"><i class="fas ${cat.icone}"></i> ${cat.categoria}</h3>
+                <div class="items-grid">
+                    ${cat.itens.map(item => `
+                        <div class="menu-card" data-name="${item.nome}" data-price="${item.preco}">
+                            <div class="card-info">
+                                <h4>${item.nome}</h4>
+                                <small>${item.desc}</small>
+                                <span class="price">R$ ${item.preco.toFixed(2)}</span>
+                            </div>
+                            <button class="add-btn add-to-order"><i class="fas fa-plus"></i></button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    renderMenu();
+
+    // Eventos de adicionar e atualizar interface
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.add-to-order');
         if (btn) {
@@ -12,81 +90,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 name: card.dataset.name,
                 price: parseFloat(card.dataset.price)
             });
-            updateUI();
+            updateCart();
             
-            // Efeito visual no botão
-            btn.style.background = '#25D366';
-            btn.style.color = '#fff';
-            setTimeout(() => { btn.style.background = ''; btn.style.color = ''; }, 500);
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            btn.style.background = '#2ecc71';
+            setTimeout(() => { btn.innerHTML = '<i class="fas fa-plus"></i>'; btn.style.background = ''; }, 600);
         }
     });
 
-    function updateUI() {
-        const orderList = document.getElementById('order-list');
-        orderList.innerHTML = '';
+    function updateCart() {
+        const list = document.getElementById('order-list');
+        const totalDisp = document.getElementById('total-price');
+        const countDisp = document.getElementById('cart-count');
+        
         let total = 0;
-
-        order.forEach((item, index) => {
-            const div = document.createElement('div');
-            div.style.display = 'flex';
-            div.style.justifyContent = 'space-between';
-            div.style.padding = '10px 0';
-            div.style.borderBottom = '1px solid #f9f9f9';
-            div.innerHTML = `
-                <span>${item.name}</span>
-                <span><b>R$ ${item.price.toFixed(2)}</b> <i class="fas fa-trash" onclick="removeItem(${index})" style="color:red; margin-left:10px"></i></span>
-            `;
-            orderList.appendChild(div);
+        list.innerHTML = order.map((item, i) => {
             total += item.price;
-        });
+            return `<div class="order-item">
+                <span>${item.name}</span>
+                <b>R$ ${item.price.toFixed(2)} <i class="fas fa-trash" onclick="removeItem(${i})"></i></b>
+            </div>`;
+        }).join('');
 
-        totalPriceSpan.textContent = `R$ ${total.toFixed(2)}`;
-        cartCount.textContent = order.length;
+        totalDisp.textContent = `R$ ${total.toFixed(2)}`;
+        countDisp.textContent = order.length;
     }
 
-    window.removeItem = (index) => {
-        order.splice(index, 1);
-        updateUI();
-    };
+    window.removeItem = (i) => { order.splice(i, 1); updateCart(); };
 
-    // Busca
+    // Busca inteligente
     document.getElementById('search-input').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         document.querySelectorAll('.menu-card').forEach(card => {
-            const name = card.dataset.name.toLowerCase();
-            card.style.display = name.includes(term) ? 'flex' : 'none';
+            const isVisible = card.dataset.name.toLowerCase().includes(term);
+            card.style.display = isVisible ? 'flex' : 'none';
         });
     });
 
-    // Finalizar Pedido via WhatsApp e Limpar
+    // Envio WhatsApp
     document.getElementById('finalizar-pedido').addEventListener('click', () => {
-        if (order.length === 0) return alert("Adicione itens ao carrinho!");
-
-        const payment = document.querySelector('input[name="payment-method"]:checked').value;
-        const phone = "5511985878638"; 
-        
-        let msg = `*Pedido Pizzaria AW*%0A%0A`;
-        order.forEach(i => msg += `• ${i.name} (R$${i.price.toFixed(2)})%0A`);
-        msg += `%0A*Total:* ${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
-
-        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-
-        // Limpeza Automática com Delay
-        setTimeout(() => {
-            if(confirm("Deseja limpar seu carrinho para uma nova compra?")) {
-                order = [];
-                updateUI();
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            }
-        }, 1500);
+        if (order.length === 0) return alert("Carrinho vazio!");
+        let msg = `*Pedido Pizzaria AW*%0A%0A` + order.map(i => `• ${i.name}`).join('%0A');
+        msg += `%0A%0A*Total:* ${document.getElementById('total-price').textContent}`;
+        window.open(`https://wa.me/5511985878638?text=${msg}`);
     });
-
-    // Slideshow
-    const slides = document.querySelectorAll('.carousel-item');
-    let current = 0;
-    setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, 3000);
 });
