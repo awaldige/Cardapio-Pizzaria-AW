@@ -1,84 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
     let order = [];
-    const orderList = document.getElementById('order-list');
+    const cartCount = document.getElementById('cart-count');
     const totalPriceSpan = document.getElementById('total-price');
 
-    // Adicionar Item (Delegação de Evento)
+    // Adicionar Item
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('add-to-order')) {
-            const item = e.target.closest('.menu-item');
-            const name = item.dataset.name;
-            const price = parseFloat(item.dataset.price);
-            order.push({ name, price });
-            renderOrder();
+        const btn = e.target.closest('.add-to-order');
+        if (btn) {
+            const card = btn.closest('.menu-card');
+            order.push({
+                name: card.dataset.name,
+                price: parseFloat(card.dataset.price)
+            });
+            updateUI();
+            
+            // Efeito visual no botão
+            btn.style.background = '#25D366';
+            btn.style.color = '#fff';
+            setTimeout(() => { btn.style.background = ''; btn.style.color = ''; }, 500);
         }
     });
 
-    // Remover Item
-    orderList.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-from-order')) {
-            const index = e.target.dataset.index;
-            order.splice(index, 1);
-            renderOrder();
-        }
-    });
-
-    function renderOrder() {
+    function updateUI() {
+        const orderList = document.getElementById('order-list');
         orderList.innerHTML = '';
         let total = 0;
-        if (order.length === 0) {
-            orderList.innerHTML = '<li>Carrinho vazio...</li>';
-        } else {
-            order.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `<span>${item.name}</span> <span>R$ ${item.price.toFixed(2)} <button class="remove-from-order" data-index="${index}" style="background:red; color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer; margin-left:10px;">X</button></span>`;
-                orderList.appendChild(li);
-                total += item.price;
-            });
-        }
-        totalPriceSpan.textContent = total.toFixed(2);
+
+        order.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.style.display = 'flex';
+            div.style.justifyContent = 'space-between';
+            div.style.padding = '10px 0';
+            div.style.borderBottom = '1px solid #f9f9f9';
+            div.innerHTML = `
+                <span>${item.name}</span>
+                <span><b>R$ ${item.price.toFixed(2)}</b> <i class="fas fa-trash" onclick="removeItem(${index})" style="color:red; margin-left:10px"></i></span>
+            `;
+            orderList.appendChild(div);
+            total += item.price;
+        });
+
+        totalPriceSpan.textContent = `R$ ${total.toFixed(2)}`;
+        cartCount.textContent = order.length;
     }
+
+    window.removeItem = (index) => {
+        order.splice(index, 1);
+        updateUI();
+    };
 
     // Busca
     document.getElementById('search-input').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
-        document.querySelectorAll('.menu-item').forEach(el => {
-            const name = el.dataset.name.toLowerCase();
-            el.style.display = name.includes(term) ? 'block' : 'none';
+        document.querySelectorAll('.menu-card').forEach(card => {
+            const name = card.dataset.name.toLowerCase();
+            card.style.display = name.includes(term) ? 'flex' : 'none';
         });
     });
 
-    // WhatsApp + Limpeza
+    // Finalizar Pedido via WhatsApp e Limpar
     document.getElementById('finalizar-pedido').addEventListener('click', () => {
-        if (order.length === 0) return alert("Adicione itens!");
-        const payment = document.querySelector('input[name="payment-method"]:checked').value;
-        let msg = `*Pedido Pizzaria AW*%0A%0A`;
-        order.forEach(i => msg += `• ${i.name}%0A`);
-        msg += `%0A*Total:* R$ ${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
-        window.open(`https://wa.me/5511985878638?text=${msg}`, '_blank');
+        if (order.length === 0) return alert("Adicione itens ao carrinho!");
 
+        const payment = document.querySelector('input[name="payment-method"]:checked').value;
+        const phone = "5511987654321"; // Seu número aqui
+        
+        let msg = `*Pedido Pizzaria AW*%0A%0A`;
+        order.forEach(i => msg += `• ${i.name} (R$${i.price.toFixed(2)})%0A`);
+        msg += `%0A*Total:* ${totalPriceSpan.textContent}%0A*Pagamento:* ${payment}`;
+
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+
+        // Limpeza Automática com Delay
         setTimeout(() => {
-            if(confirm("Deseja limpar o carrinho para um novo pedido?")) {
+            if(confirm("Deseja limpar seu carrinho para uma nova compra?")) {
                 order = [];
-                renderOrder();
+                updateUI();
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
-        }, 2000);
+        }, 1500);
     });
 
-    // Carousel
+    // Slideshow
     const slides = document.querySelectorAll('.carousel-item');
     let current = 0;
-    function next() {
+    setInterval(() => {
         slides[current].classList.remove('active');
         current = (current + 1) % slides.length;
         slides[current].classList.add('active');
-    }
-    setInterval(next, 4000);
-    document.querySelector('.next').onclick = next;
-    document.querySelector('.prev').onclick = () => {
-        slides[current].classList.remove('active');
-        current = (current - 1 + slides.length) % slides.length;
-        slides[current].classList.add('active');
-    };
+    }, 3000);
 });
