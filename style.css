@@ -1,44 +1,61 @@
-/* Globais */
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-header { background: #8B0000; color: white; padding: 20px; text-align: center; }
-header .logo { width: 60px; border-radius: 50%; vertical-align: middle; }
-nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 15px; }
-nav a { color: white; text-decoration: none; font-weight: bold; }
+:root {
+    --primary: #8B0000;
+    --secondary: #CC0000;
+    --accent: #28a745;
+    --dark: #1a1a1a;
+    --gray: #666;
+}
 
-main { max-width: 1000px; margin: 0 auto; padding: 20px; background: white; }
+body { font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; background: #f8f8f8; margin: 0; color: var(--dark); }
 
-/* Carrossel */
-.carousel-container { position: relative; overflow: hidden; height: 300px; border-radius: 10px; margin-bottom: 30px; }
+header { background: var(--primary); color: white; text-align: center; padding: 40px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+header .logo { width: 80px; border-radius: 50%; border: 3px solid white; margin-bottom: 10px; }
+nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+nav a { color: white; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
+
+main { max-width: 1100px; margin: 20px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+
+/* Menu Grid */
+.menu-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
+.section-title { text-align: center; margin-bottom: 40px; }
+.title-line { width: 50px; height: 3px; background: var(--primary); margin: 10px auto; }
+
+.category-box h3 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: var(--primary); font-size: 1.5rem; }
+.menu-list { list-style: none; padding: 0; }
+.menu-item { margin-bottom: 20px; }
+
+.item-header { display: flex; align-items: baseline; justify-content: space-between; }
+.item-name { font-weight: bold; font-size: 1.05rem; }
+.item-dots { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; }
+.item-price { font-weight: bold; color: var(--secondary); }
+
+.add-to-order { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; width: 100%; margin-top: 5px; font-weight: bold; transition: 0.2s; }
+.add-to-order:hover { background: var(--accent); color: white; }
+
+/* Carousel */
+.carousel-container { height: 350px; position: relative; overflow: hidden; border-radius: 10px; margin-bottom: 40px; }
 .carousel-item { width: 100%; height: 100%; object-fit: cover; display: none; }
-.carousel-item.active { display: block; animation: fade 0.5s; }
-@keyframes fade { from {opacity: 0.4} to {opacity: 1} }
-.carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; }
+.carousel-item.active { display: block; animation: fade 0.8s; }
+@keyframes fade { from {opacity: 0.6} to {opacity: 1} }
+.carousel-button { position: absolute; top: 50%; background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; }
 .next { right: 0; }
 
+/* Carrinho e Checkout */
+#order-summary { background: #fffdf2; padding: 20px; border: 1px solid #ffeeba; border-radius: 8px; margin-top: 40px; }
+#order-list { list-style: none; padding: 0; }
+#order-list li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+
+.total-container { display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: bold; margin-top: 15px; border-top: 2px solid #ddd; padding-top: 10px; }
+.total-val { color: var(--primary); }
+
+#finalizar-pedido { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; margin-top: 20px; }
+
 /* Busca */
-#search { text-align: center; margin-bottom: 30px; }
-#search input { width: 90%; max-width: 500px; padding: 12px; border-radius: 25px; border: 1px solid #ccc; outline: none; }
+.search-wrapper { position: relative; max-width: 500px; margin: 0 auto 40px; }
+#search-input { width: 100%; padding: 12px 12px 12px 40px; border-radius: 25px; border: 1px solid #ddd; outline: none; }
+.search-wrapper i { position: absolute; left: 15px; top: 14px; color: #999; }
 
-/* Menu Profissional */
-.menu-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-.menu-category h3 { color: #8B0000; border-bottom: 2px solid #8B0000; padding-bottom: 5px; text-align: left; }
-.menu-list { list-style: none; padding: 0; }
-.menu-item { margin-bottom: 15px; }
-.item-info { display: flex; align-items: baseline; justify-content: space-between; }
-.item-name { font-weight: bold; }
-.item-line { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; }
-.item-price { color: #8B0000; font-weight: bold; }
-
-.add-to-order { background: #4CAF50; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 5px; font-weight: bold; }
-
-/* Pedido e Checkout */
-#order-summary { background: #fffdf0; padding: 20px; border: 1px solid #ffeeba; border-radius: 10px; }
-#order-list li { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-.remove-from-order { background: #ff4d4d; color: white; border: none; padding: 2px 8px; border-radius: 3px; cursor: pointer; }
-.total-area { text-align: right; font-size: 1.4rem; color: #8B0000; }
-
-.payment-options { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
-#finalizar-pedido { background: #25D366; color: white; border: none; width: 100%; padding: 15px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; }
-#finalizar-pedido:hover { background: #128C7E; transform: scale(1.02); }
-
-footer { text-align: center; padding: 20px; color: #777; font-size: 0.9rem; }
+@media (max-width: 768px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    main { padding: 15px; }
+}
