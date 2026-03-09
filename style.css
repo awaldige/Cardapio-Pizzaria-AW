@@ -1,277 +1,44 @@
-/* Estilos Gerais */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
+/* Globais */
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+header { background: #8B0000; color: white; padding: 20px; text-align: center; }
+header .logo { width: 60px; border-radius: 50%; vertical-align: middle; }
+nav ul { list-style: none; padding: 0; display: flex; justify-content: center; gap: 15px; }
+nav a { color: white; text-decoration: none; font-weight: bold; }
 
-header {
-    background-color: #8B0000; /* Vermelho escuro */
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
+main { max-width: 1000px; margin: 0 auto; padding: 20px; background: white; }
 
-header .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
-}
+/* Carrossel */
+.carousel-container { position: relative; overflow: hidden; height: 300px; border-radius: 10px; margin-bottom: 30px; }
+.carousel-item { width: 100%; height: 100%; object-fit: cover; display: none; }
+.carousel-item.active { display: block; animation: fade 0.5s; }
+@keyframes fade { from {opacity: 0.4} to {opacity: 1} }
+.carousel-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; }
+.next { right: 0; }
 
-header .logo {
-    width: 80px;
-    height: auto;
-    border-radius: 50%;
-}
+/* Busca */
+#search { text-align: center; margin-bottom: 30px; }
+#search input { width: 90%; max-width: 500px; padding: 12px; border-radius: 25px; border: 1px solid #ccc; outline: none; }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
+/* Menu Profissional */
+.menu-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.menu-category h3 { color: #8B0000; border-bottom: 2px solid #8B0000; padding-bottom: 5px; text-align: left; }
+.menu-list { list-style: none; padding: 0; }
+.menu-item { margin-bottom: 15px; }
+.item-info { display: flex; align-items: baseline; justify-content: space-between; }
+.item-name { font-weight: bold; }
+.item-line { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 10px; }
+.item-price { color: #8B0000; font-weight: bold; }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+.add-to-order { background: #4CAF50; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 5px; font-weight: bold; }
 
-header nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 12px;
-    transition: all 0.3s ease;
-}
+/* Pedido e Checkout */
+#order-summary { background: #fffdf0; padding: 20px; border: 1px solid #ffeeba; border-radius: 10px; }
+#order-list li { display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+.remove-from-order { background: #ff4d4d; color: white; border: none; padding: 2px 8px; border-radius: 3px; cursor: pointer; }
+.total-area { text-align: right; font-size: 1.4rem; color: #8B0000; }
 
-header nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-}
+.payment-options { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+#finalizar-pedido { background: #25D366; color: white; border: none; width: 100%; padding: 15px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+#finalizar-pedido:hover { background: #128C7E; transform: scale(1.02); }
 
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-section {
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #eee;
-}
-
-section:last-of-type {
-    border-bottom: none;
-}
-
-h2, h3 {
-    color: #CC0000;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-/* Estilos para o Carrossel */
-.carousel-container {
-    position: relative;
-    max-width: 100%;
-    overflow: hidden;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-slides {
-    display: flex;
-    position: relative;
-    height: 400px; /* Altura fixa para manter consistência */
-}
-
-.carousel-item {
-    width: 100%;
-    height: 100%;
-    display: none;
-    object-fit: cover;
-}
-
-.carousel-item.active {
-    display: block;
-    width: 100%;
-    animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    cursor: pointer;
-    font-size: 1.8rem;
-    border-radius: 50%;
-    z-index: 10;
-}
-
-.carousel-button.prev { left: 10px; }
-.carousel-button.next { right: 10px; }
-
-/* Estilos para a Busca */
-#search {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-#search input {
-    width: 80%;
-    padding: 12px 20px;
-    border: 2px solid #ddd;
-    border-radius: 25px;
-    font-size: 1rem;
-    max-width: 400px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-#search input:focus {
-    border-color: #CC0000;
-}
-
-/* Estilos para o Menu */
-.menu-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.menu-item {
-    background-color: #fefefe;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.menu-item button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-/* Resumo do Pedido */
-#order-summary {
-    background-color: #f9fff9;
-    border: 2px solid #d4edda;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-#order-list li {
-    padding: 10px 0;
-    border-bottom: 1px dashed #ccc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.remove-from-order {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 5px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-#total-price {
-    font-size: 1.5rem;
-    color: #CC0000;
-    text-align: right;
-    display: block;
-    margin-top: 10px;
-}
-
-/* Formas de Pagamento */
-.payment-options {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 20px 0;
-}
-
-.payment-options label {
-    padding: 10px 20px;
-    background: #eee;
-    border-radius: 20px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-/* Estilo para quando o rádio estiver marcado (via JS ou CSS adjacente) */
-input[type="radio"]:checked + span, 
-input[type="radio"]:checked {
-    accent-color: #28a745;
-}
-
-/* Botão Finalizar */
-#finalizar-pedido {
-    background-color: #25D366; /* Cor oficial WhatsApp */
-    color: white;
-    width: 100%;
-    max-width: 400px;
-    display: block;
-    margin: 30px auto;
-    padding: 20px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#finalizar-pedido:hover {
-    background-color: #128C7E;
-    transform: scale(1.02);
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    header h1 { font-size: 1.8rem; }
-    .carousel-slides { height: 250px; }
-    .menu-list { grid-template-columns: 1fr; }
-}
+footer { text-align: center; padding: 20px; color: #777; font-size: 0.9rem; }
