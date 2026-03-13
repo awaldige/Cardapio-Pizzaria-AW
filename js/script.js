@@ -33,6 +33,7 @@ const menuData = {
 
 const sizeModifiers = { "grande": 1.0, "media": 0.8, "broto": 0.6 };
 let cart = JSON.parse(localStorage.getItem('pizzaria_aw_cart')) || [];
+let slideIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderMenu();
@@ -41,57 +42,73 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
 });
 
+// --- CARROSSEL ---
+function setupCarousel() {
+    showSlides(slideIndex);
+    setInterval(() => changeSlide(1), 5000);
+}
+window.changeSlide = (n) => { showSlides(slideIndex += n); };
+window.currentSlide = (n) => { showSlides(slideIndex = n); };
+function showSlides(n) {
+    let slides = document.getElementsByClassName("carousel-slide");
+    let dots = document.getElementsByClassName("dot");
+    if (n >= slides.length) slideIndex = 0;
+    if (n < 0) slideIndex = slides.length - 1;
+    for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
+    for (let i = 0; i < dots.length; i++) dots[i].classList.remove("active");
+    if (slides[slideIndex]) slides[slideIndex].classList.add("active");
+    if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+}
+
+// --- MENU ---
 function renderMenu() {
     const container = document.getElementById('menu-container');
-    let html = '';
-
-    const generateSection = (title, items, isPizza = false) => {
-        let sectionHtml = `<h2 class="category-title">${title}</h2><div class="menu-grid">`;
-        items.forEach((item, i) => {
-            sectionHtml += `
-                <div class="menu-card item-card" data-name="${item.name}">
-                    <div class="card-info">
-                        <h4>${item.name}</h4>
-                        <p class="desc-text">${item.desc}</p>
-                        ${isPizza ? `
-                        <div class="pizza-options">
-                            <select id="size-${i}" class="option-select">
-                                <option value="grande">Grande (8 fatias)</option>
-                                <option value="media">Média (6 fatias)</option>
-                                <option value="broto">Broto (4 fatias)</option>
-                            </select>
-                            <label class="half-check"><input type="checkbox" onchange="toggleMeio(${i})" id="chk-${i}"> Meio a Meio?</label>
-                            <div id="box-meio-${i}" style="display:none">
-                                <select id="sabor2-${i}" class="option-select">
-                                    <option value="">2º Sabor...</option>
-                                    ${items.map(p2 => `<option value="${p2.name}">${p2.name}</option>`).join('')}
-                                </select>
-                            </div>
-                        </div>` : `<p class="price-simple">R$ ${item.price.toFixed(2)}</p>`}
-                        <button onclick="${isPizza ? `addPizza(${i})` : `addSimple('${item.name}', ${item.price})`}" class="add-btn">ADICIONAR</button>
-                    </div>
-                </div>`;
-        });
-        return sectionHtml + '</div>';
-    };
-
-    html += generateSection("🍕 Pizzas Salgadas", menuData.pizzas, true);
+    let html = generateSection("🍕 Pizzas Salgadas", menuData.pizzas, true);
     html += generateSection("🍰 Sobremesas & Doces", menuData.doces, false);
     html += generateSection("🥤 Bebidas", menuData.bebidas, false);
     container.innerHTML = html;
 }
 
-window.toggleMeio = (i) => {
-    document.getElementById(`box-meio-${i}`).style.display = document.getElementById(`chk-${i}`).checked ? 'block' : 'none';
+function generateSection(title, items, isPizza) {
+    let html = `<h2 class="category-title">${title}</h2><div class="menu-grid">`;
+    items.forEach((item, i) => {
+        html += `
+            <div class="menu-card item-card" data-name="${item.name}">
+                <h4>${item.name}</h4>
+                <p class="desc-text">${item.desc}</p>
+                ${isPizza ? `
+                    <div class="pizza-options">
+                        <select id="size-${title}-${i}" class="option-select">
+                            <option value="grande">Grande</option>
+                            <option value="media">Média</option>
+                            <option value="broto">Broto</option>
+                        </select>
+                        <label class="half-check"><input type="checkbox" onchange="toggleMeio('${title}', ${i})" id="chk-${title}-${i}"> Meio a Meio?</label>
+                        <div id="box-meio-${title}-${i}" style="display:none">
+                            <select id="sabor2-${title}-${i}" class="option-select">
+                                <option value="">2º Sabor...</option>
+                                ${menuData.pizzas.map(p => `<option value="${p.name}">${p.name}</option>`).join('')}
+                            </select>
+                        </div>
+                    </div>` : `<p class="price-simple">R$ ${item.price.toFixed(2)}</p>`}
+                <button onclick="${isPizza ? `addPizza('${title}', ${i})` : `addSimple('${item.name}', ${item.price})`}" class="add-btn">ADICIONAR</button>
+            </div>`;
+    });
+    return html + '</div>';
+}
+
+window.toggleMeio = (title, i) => {
+    const box = document.getElementById(`box-meio-${title}-${i}`);
+    box.style.display = document.getElementById(`chk-${title}-${i}`).checked ? 'block' : 'none';
 };
 
-window.addPizza = (i) => {
-    const p1 = menuData.pizzas[i];
-    const size = document.getElementById(`size-${i}`).value;
-    const isMeio = document.getElementById(`chk-${i}`).checked;
-    const s2 = document.getElementById(`sabor2-${i}`).value;
+window.addPizza = (title, i) => {
+    const p1 = (title === "🍕 Pizzas Salgadas") ? menuData.pizzas[i] : menuData.doces[i];
+    const size = document.getElementById(`size-${title}-${i}`).value;
+    const isMeio = document.getElementById(`chk-${title}-${i}`).checked;
+    const s2 = document.getElementById(`sabor2-${title}-${i}`).value;
     let price = p1.price * sizeModifiers[size];
-    let name = `Pizza ${p1.name} (${size})`;
+    let name = `${p1.name} (${size})`;
     if(isMeio && s2){
         const p2 = menuData.pizzas.find(x => x.name === s2);
         price = Math.max(price, p2.price * sizeModifiers[size]);
@@ -106,9 +123,11 @@ window.addSimple = (name, price) => {
     updateCartUI();
 };
 
+// --- CARRINHO ---
 function updateCartUI() {
     const list = document.getElementById('order-list');
-    list.innerHTML = cart.map((it, idx) => `<div class="cart-item"><span>${it.name}</span><span>R$ ${it.price.toFixed(2)} <i class="fas fa-trash" onclick="remove(${idx})"></i></span></div>`).join('');
+    list.innerHTML = cart.length === 0 ? '<p class="empty-msg">Nenhum item adicionado.</p>' : 
+        cart.map((it, idx) => `<div class="cart-item"><span>${it.name}</span><span>R$ ${it.price.toFixed(2)} <i class="fas fa-trash" onclick="remove(${idx})"></i></span></div>`).join('');
     const total = cart.reduce((acc, i) => acc + i.price, 0);
     document.getElementById('total-price').innerText = `R$ ${total.toFixed(2)}`;
     document.getElementById('cart-count').innerText = cart.length;
@@ -126,24 +145,16 @@ function setupSearch() {
     });
 }
 
-function setupCarousel() {
-    let current = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
-    setInterval(() => {
-        slides[current].classList.remove('active');
-        if(dots[current]) dots[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-        if(dots[current]) dots[current].classList.add('active');
-    }, 5000);
-}
-
+// --- WHATSAPP ---
 document.getElementById('finalizar-pedido').addEventListener('click', () => {
-    const nome = document.getElementById('client-name').value;
-    if(!nome || cart.length === 0) return alert("Verifique o nome e o carrinho!");
+    const nome = document.getElementById('client-name').value.trim();
+    if (!nome) { alert("Por favor, digite seu nome!"); return; }
+    if (cart.length === 0) { alert("Carrinho vazio!"); return; }
+
+    const pag = document.getElementById('payment').value;
     let msg = `*PEDIDO PIZZARIA AW*%0A*Cliente:* ${nome}%0A--------------------%0A`;
     cart.forEach(i => msg += `• ${i.name} - R$ ${i.price.toFixed(2)}%0A`);
-    msg += `--------------------%0A*TOTAL:* ${document.getElementById('total-price').innerText}`;
+    msg += `--------------------%0A*Pagamento:* ${pag}%0A*TOTAL:* ${document.getElementById('total-price').innerText}`;
+    
     window.open(`https://wa.me/5511985878638?text=${msg}`);
 });
