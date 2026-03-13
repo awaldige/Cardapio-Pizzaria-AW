@@ -1,42 +1,44 @@
 /**
- * PIZZARIA AW - BANCO DE DATOS E LÓGICA DE NEGÓCIO
+ * PIZZARIA AW - LÓGICA COMPLETA
+ * Itens, Meio a Meio, Carrinho e WhatsApp
  */
 
 const menuData = {
     pizzas: [
-        { name: "Margherita", price: 35.00, desc: "Mussarela, tomate fatiado e manjericão fresco." },
-        { name: "Mussarela", price: 30.00, desc: "Mussarela premium com orégano e azeitonas." },
-        { name: "Portuguesa", price: 38.00, desc: "Presunto, ovos, cebola, ervilha e mussarela." },
-        { name: "Frango com Catupiry", price: 36.00, desc: "Frango desfiado com o autêntico Catupiry." },
-        { name: "Pepperoni", price: 40.00, desc: "Mussarela coberta com fatias de pepperoni." },
-        { name: "Calabresa", price: 32.00, desc: "Calabresa fatiada, cebola e azeitonas." },
+        { name: "Margherita", price: 35.00, desc: "Mussarela, tomate e manjericão." },
+        { name: "Mussarela", price: 30.00, desc: "Mussarela premium e orégano." },
+        { name: "Portuguesa", price: 38.00, desc: "Presunto, ovos, cebola e mussarela." },
+        { name: "Frango com Catupiry", price: 36.00, desc: "Frango desfiado com Catupiry." },
+        { name: "Pepperoni", price: 40.00, desc: "Mussarela e fatias de pepperoni." },
+        { name: "Calabresa", price: 32.00, desc: "Calabresa fatiada e cebola." },
         { name: "Quatro Queijos", price: 42.00, desc: "Mussarela, provolone, parmesão e gorgonzola." },
         { name: "Vegetariana", price: 35.00, desc: "Escarola, milho, ervilha e palmito." },
-        { name: "Rúcula com Tomate Seco", price: 45.00, desc: "Mussarela, rúcula e tomate seco artesanal." },
-        { name: "Atum", price: 38.00, desc: "Atum sólido premium, cebola e mussarela." },
-        { name: "Camarão", price: 60.00, desc: "Camarões selecionados e Catupiry." },
-        { name: "Palmito Especial", price: 42.00, desc: "Palmito macio com toque de mussarela." }
+        { name: "Rúcula com Tomate Seco", price: 45.00, desc: "Mussarela, rúcula e tomate seco." },
+        { name: "Atum", price: 38.00, desc: "Atum sólido e cebola." },
+        { name: "Camarão", price: 60.00, desc: "Camarão selecionado e Catupiry." },
+        { name: "Palmito Especial", price: 42.00, desc: "Palmito macio e mussarela." }
     ],
     doces: [
-        { name: "Mousse de Chocolate", price: 12.00, desc: "Chocolate meio amargo cremoso." },
-        { name: "Mousse de Maracujá", price: 10.00, desc: "Mousse natural com calda da fruta." },
-        { name: "Pudim de Leite", price: 12.00, desc: "Receita caseira com calda de caramelo." },
-        { name: "Torta de Limão", price: 15.00, desc: "Creme de limão siciliano com merengue." },
-        { name: "Torta Holandesa", price: 18.00, desc: "Creme holandês com cobertura de ganache." },
-        { name: "Pavê de Baunilha", price: 14.00, desc: "Camadas de biscoito e creme de baunilha." },
-        { name: "Cheesecake", price: 20.00, desc: "Com calda de frutas vermelhas." },
-        { name: "Brownie", price: 16.00, desc: "Chocolate belga com calda quente." }
+        { name: "Mousse de Chocolate", price: 12.00, desc: "Cremoso chocolate meio amargo." },
+        { name: "Pudim de Leite", price: 10.00, desc: "Caseiro com calda de caramelo." },
+        { name: "Torta de Limão", price: 15.00, desc: "Creme de limão e merengue." },
+        { name: "Torta Holandesa", price: 18.00, desc: "Creme holandês com cobertura de ganache e biscoito." },
+        { name: "Brownie com Calda", price: 16.00, desc: "Brownie de chocolate belga (aquecer 30s)." },
+        { name: "Cheesecake de Frutas Vermelhas", price: 20.00, desc: "Massa crocante com creme de queijo e calda artesanal." },
+        { name: "Pavê de Baunilha", price: 14.00, desc: "Camadas de biscoito maria com creme de baunilha." }
     ],
-    bebidas: [
-        { name: "Coca-Cola 2L", price: 14.00, desc: "Garrafa gelada." },
-        { name: "Coca-Cola Lata", price: 6.00, desc: "350ml gelada." },
+   bebidas: [
+        { name: "Coca-Cola 2L", price: 14.00, desc: "Garrafa Pet bem gelada." },
+        { name: "Coca-Cola Lata", price: 6.00, desc: "350ml bem gelada." },
+        { name: "Guaraná Antártica 2L", price: 12.00, desc: "Garrafa Pet bem gelada." },
+        { name: "Fanta Laranja 2L", price: 12.00, desc: "Garrafa Pet bem gelada." },
         { name: "Suco Natural", price: 10.00, desc: "Laranja ou Limão 500ml." },
-        { name: "Água Mineral", price: 4.00, desc: "500ml sem gás." }
+        { name: "Água Mineral", price: 4.00, desc: "500ml sem gás." },
+        { name: "Cerveja Heineken", price: 12.00, desc: "Long Neck 330ml." }
     ]
 };
 
 let cart = [];
-let slideIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderMenu();
@@ -49,32 +51,32 @@ function renderMenu() {
     const container = document.getElementById('menu-container');
     let html = '';
 
-    // PIZZAS
-    html += '<h2 class="category-title">Pizzas Artesanais</h2><div class="menu-grid">';
+    // Seção de Pizzas com Meio a Meio
+    html += '<h2 class="category-title">Pizzas Salgadas</h2><div class="menu-grid">';
     menuData.pizzas.forEach((p, i) => {
         html += `
         <div class="menu-card item-card" data-name="${p.name}">
-            <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                 <h4 style="margin:0;">${p.name}</h4>
                 <strong style="color:var(--primary)">R$ ${p.price.toFixed(2)}</strong>
             </div>
-            <p style="font-size:0.8rem; color:#666; margin:5px 0 15px 0;">${p.desc}</p>
+            <p style="font-size:0.8rem; color:#777; margin:5px 0 12px 0;">${p.desc}</p>
             
             <div class="half-box">
-                <label style="font-size:0.75rem; font-weight:700;">
+                <label style="font-size:0.75rem; font-weight:600; cursor:pointer;">
                     <input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?
                 </label>
-                <select id="second-flavor-${i}" style="display:none; width:100%; margin-top:8px; padding:5px; border-radius:8px; border:1px solid #ddd;">
+                <select id="second-flavor-${i}" style="display:none; width:100%; margin-top:8px; padding:6px; border-radius:8px; border:1px solid #ddd; font-size:0.8rem;">
                     <option value="">Escolha o 2º sabor...</option>
                     ${menuData.pizzas.map(pz => `<option value="${pz.name}">${pz.name}</option>`).join('')}
                 </select>
             </div>
-            <button onclick="addPizzaToCart(${i})" class="btn-confirm" style="padding:10px; font-size:0.9rem; background:var(--dark)">Adicionar</button>
+            <button onclick="addPizzaToCart(${i})" style="width:100%; background:var(--dark); color:white; border:none; padding:10px; border-radius:10px; cursor:pointer; font-weight:600;">Adicionar ao Pedido</button>
         </div>`;
     });
     html += '</div>';
 
-    // DOCES E BEBIDAS
+    // Sobremesas e Bebidas
     html += renderSimpleSection("Sobremesas", menuData.doces);
     html += renderSimpleSection("Bebidas", menuData.bebidas);
 
@@ -90,14 +92,14 @@ function renderSimpleSection(title, items) {
                 <h4 style="margin:0;">${item.name}</h4>
                 <strong style="color:var(--primary)">R$ ${item.price.toFixed(2)}</strong>
             </div>
-            <p style="font-size:0.8rem; color:#666; margin:5px 0 15px 0;">${item.desc}</p>
-            <button onclick="addSimpleToCart('${item.name}', ${item.price})" class="btn-confirm" style="padding:10px; font-size:0.9rem; background:var(--dark)">Adicionar</button>
+            <p style="font-size:0.8rem; color:#777; margin:5px 0 12px 0;">${item.desc}</p>
+            <button onclick="addSimpleToCart('${item.name}', ${item.price})" style="width:100%; background:var(--dark); color:white; border:none; padding:10px; border-radius:10px; cursor:pointer; font-weight:600;">Adicionar</button>
         </div>`;
     });
     return html + '</div>';
 }
 
-// --- LÓGICA DO CARRINHO ---
+// --- FUNÇÕES DE ADIÇÃO ---
 window.toggleHalf = (i) => {
     const select = document.getElementById(`second-flavor-${i}`);
     select.style.display = document.getElementById(`is-half-${i}`).checked ? 'block' : 'none';
@@ -113,12 +115,11 @@ window.addPizzaToCart = (i) => {
 
     if (isHalf) {
         if (!flavor2Name) {
-            alert("Por favor, selecione o segundo sabor!");
+            alert("Por favor, escolha o segundo sabor para a pizza meio a meio!");
             return;
         }
         const p2 = menuData.pizzas.find(p => p.name === flavor2Name);
-        // Regra da pizza mais cara
-        finalPrice = Math.max(p1.price, p2.price);
+        finalPrice = Math.max(p1.price, p2.price); // Regra da mais cara
         finalName = `½ ${p1.name} / ½ ${p2.name}`;
     }
 
@@ -131,26 +132,27 @@ window.addSimpleToCart = (name, price) => {
     updateCart();
 };
 
+// --- ATUALIZAÇÃO DO CARRINHO ---
 function updateCart() {
     const list = document.getElementById('order-list');
     const totalDisp = document.getElementById('total-price');
     const countDisp = document.getElementById('cart-count');
 
     if (cart.length === 0) {
-        list.innerHTML = `<p class="empty-text" style="text-align:center; color:#999; padding:20px;">Seu carrinho está vazio.</p>`;
+        list.innerHTML = `<p class="empty-text" style="text-align:center; padding:20px; color:#999;">Carrinho vazio</p>`;
     } else {
         list.innerHTML = cart.map((item, idx) => `
             <div class="item-row" style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f0f0f0;">
-                <div style="font-size:0.9rem;"><strong>${item.name}</strong></div>
-                <div style="display:flex; align-items:center; gap:12px;">
-                    <span style="font-weight:600;">R$ ${item.price.toFixed(2)}</span>
-                    <button class="btn-del" onclick="removeItem(${idx})" style="color:#e74c3c; border:none; background:none; cursor:pointer; font-size:1.1rem;"><i class="fas fa-times-circle"></i></button>
+                <div style="font-size:0.85rem; font-weight:600;">${item.name}</div>
+                <div style="display:flex; align-items:center; gap:10px">
+                    <span style="font-size:0.9rem;">R$ ${item.price.toFixed(2)}</span>
+                    <i class="fas fa-times-circle" onclick="removeItem(${idx})" style="color:#e74c3c; cursor:pointer;"></i>
                 </div>
             </div>
         `).join('');
     }
 
-    const total = cart.reduce((sum, i) => sum + i.price, 0);
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
     totalDisp.innerText = `R$ ${total.toFixed(2)}`;
     countDisp.innerText = cart.length;
 }
@@ -161,13 +163,17 @@ window.removeItem = (idx) => {
 };
 
 window.clearCart = () => {
-    if(confirm("Deseja limpar todo o carrinho?")) {
+    if(confirm("Limpar todo o carrinho?")) {
         cart = [];
         updateCart();
     }
 };
 
-// --- BUSCA E UTILITÁRIOS ---
+// --- UTILITÁRIOS ---
+window.scrollToElement = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+};
+
 function setupSearch() {
     document.getElementById('search-input').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
@@ -180,23 +186,20 @@ function setupSearch() {
 
 function startCarousel() {
     const slides = document.querySelectorAll('.slide');
+    let current = 0;
     if(slides.length === 0) return;
     setInterval(() => {
-        slides[slideIndex].classList.remove('active');
-        slideIndex = (slideIndex + 1) % slides.length;
-        slides[slideIndex].classList.add('active');
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
     }, 4000);
 }
 
-window.scrollToElement = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-};
-
-// --- FINALIZAR WHATSAPP ---
+// --- ENVIO WHATSAPP ---
 document.getElementById('finalizar-pedido').addEventListener('click', () => {
     const nome = document.getElementById('client-name').value.trim();
     if (!nome) {
-        alert("Por favor, informe seu nome antes de finalizar!");
+        alert("Por favor, digite seu nome!");
         document.getElementById('client-name').focus();
         return;
     }
@@ -208,16 +211,14 @@ document.getElementById('finalizar-pedido').addEventListener('click', () => {
     const pag = document.getElementById('payment').value;
     const total = document.getElementById('total-price').innerText;
     
-    let msg = `*NOVO PEDIDO - PIZZARIA AW*%0A`;
+    let msg = `*PIZZARIA AW - NOVO PEDIDO*%0A`;
     msg += `*Cliente:* ${nome}%0A`;
     msg += `------------------------------%0A`;
-    cart.forEach(item => {
-        msg += `• ${item.name} - R$ ${item.price.toFixed(2)}%0A`;
-    });
+    cart.forEach(item => msg += `• ${item.name} - R$ ${item.price.toFixed(2)}%0A`);
     msg += `------------------------------%0A`;
     msg += `*Pagamento:* ${pag}%0A`;
     msg += `*TOTAL:* ${total}%0A%0A`;
-    msg += `*Endereço:* Rua Aluísio Azevedo, 297`;
+    msg += `*Local:* Rua Aluísio Azevedo, 297`;
 
     window.open(`https://wa.me/5511985878638?text=${msg}`);
 });
