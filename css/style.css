@@ -13,134 +13,137 @@
 * { box-sizing: border-box; font-family: 'Inter', sans-serif; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { background: #f4f4f4; color: var(--text-main); line-height: 1.5; overflow-x: hidden; }
 
-/* --- NAVBAR RESPONSIVA --- */
-.navbar { 
+/* --- NAVBAR --- */
+.navbar { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 12px 0; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 1400px; margin: 0 auto; }
+.nav-brand h1 { font-size: 1.2rem; font-weight: 800; color: var(--dark); }
+
+/* --- SEÇÃO NOME (NOVO VISUAL) --- */
+.form-section { margin-bottom: 25px; }
+.input-card { 
     background: var(--white); 
-    border-bottom: 1px solid var(--border); 
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
-    padding: 10px 0;
+    padding: 20px; 
+    border-radius: var(--radius); 
+    border-left: 5px solid var(--primary);
+    box-shadow: var(--shadow);
 }
-.nav-container { 
+.input-field { 
+    background: var(--gray); 
+    border-radius: 10px; 
+    padding: 5px 15px; 
     display: flex; 
-    justify-content: space-between; 
     align-items: center; 
-    width: 95%; /* No celular usa quase tudo */
-    max-width: 1400px; /* No PC expande até 1400px */
-    margin: 0 auto; 
+    border: 1px solid var(--border);
+    margin-top: 10px;
 }
-.nav-brand { display: flex; align-items: center; gap: 10px; }
-.nav-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-.nav-brand h1 { font-size: 1.1rem; font-weight: 800; color: var(--dark); }
+.input-field input { border: none; background: transparent; padding: 10px; width: 100%; outline: none; font-size: 1rem; }
+.input-field i { color: var(--primary); }
 
-.nav-cart { 
-    background: var(--dark); 
-    color: white; 
-    padding: 8px 14px; 
-    border-radius: 50px; 
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-}
-
-/* --- CONTEÚDO (A MÁGICA DA LARGURA) --- */
-.content-wrapper { 
-    width: 95%; /* Garante que no celular não sobre muito espaço nas laterais */
-    max-width: 1400px; /* No Desktop, permite que o site "abra" na tela */
-    margin: 0 auto; 
-    padding: 15px 0; 
-}
-
-/* --- CARROSSEL --- */
+/* --- CARROSSEL REATIVADO --- */
 .hero-carousel { 
     border-radius: var(--radius); 
     overflow: hidden; 
-    height: 180px; 
-    margin-bottom: 25px; 
+    height: 200px; 
+    margin-bottom: 30px; 
     position: relative;
     box-shadow: var(--shadow);
 }
+.slides { width: 100%; height: 100%; position: relative; }
+.slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; }
+.slide.active { opacity: 1; position: relative; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- GRID DO MENU (MOBILE-FIRST) --- */
-.category-title { font-size: 1.3rem; margin: 30px 0 15px; font-weight: 800; }
-.menu-grid { 
-    display: grid; 
-    grid-template-columns: 1fr; /* 1 Coluna no celular */
-    gap: 15px; 
-}
+/* --- GRID DO MENU --- */
+.content-wrapper { width: 95%; max-width: 1400px; margin: 0 auto; padding: 20px 0; }
+.category-title { font-size: 1.5rem; margin: 40px 0 20px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 
 .menu-card { 
     background: var(--white); 
     border-radius: var(--radius); 
-    padding: 18px; 
+    padding: 20px; 
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-}
-.menu-card h4 { font-size: 1.05rem; color: var(--dark); }
-.menu-card p { font-size: 0.85rem; color: #7f8c8d; margin: 5px 0 15px; }
-
-.btn-add { 
-    width: 100%; 
-    background: var(--dark); 
-    color: white; 
-    border: none; 
-    padding: 12px; 
-    border-radius: 10px; 
-    font-weight: 700; 
-    cursor: pointer;
+    justify-content: space-between;
 }
 
-/* --- CARRINHO --- */
+/* --- RESUMO DO PEDIDO (ESTILO RECIBO) --- */
 .checkout-card { 
     background: var(--white); 
     border-radius: var(--radius); 
-    margin: 30px 0; 
+    margin: 40px 0; 
     box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
-    border: 1px solid var(--border); 
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+.checkout-header { 
+    background: var(--dark); 
+    color: white; 
+    padding: 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.checkout-items { padding: 20px; background: #fff; }
+.item-row { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 12px 0; 
+    border-bottom: 1px dashed #ddd; 
+}
+.total-row { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 1.6rem; 
+    font-weight: 800; 
+    padding: 25px 20px; 
+    background: var(--gray);
+    color: var(--dark);
+}
+
+/* --- FOOTER PROFISSIONAL --- */
+.footer-contact { 
+    background: var(--dark); 
+    color: #fff; 
+    padding: 50px 20px; 
+    margin-top: 60px;
+    border-top: 5px solid var(--primary);
+}
+.footer-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+}
+.footer-info h3 { color: var(--primary); margin-bottom: 15px; }
+.btn-map { 
+    display: inline-block; 
+    margin-top: 15px; 
+    padding: 10px 20px; 
+    background: var(--primary); 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 8px; 
+    font-weight: 600;
 }
 
 /* ==========================================
-   CONFIGURAÇÃO PARA DESKTOP (PC)
+   DESKTOP OPTIMIZATION
    ========================================== */
 @media (min-width: 1024px) {
-    /* Faz o site ocupar 90% da largura da tela para não ficar só no meio */
-    .nav-container, .content-wrapper { 
-        width: 90%; 
-    }
-
-    /* 3 Colunas de pizzas para preencher a largura */
-    .menu-grid { 
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 25px; 
-    }
-
-    /* Banner maior no PC */
-    .hero-carousel { 
-        height: 400px; 
-        margin-bottom: 40px; 
-    }
-
-    /* Efeito de hover no PC */
-    .menu-card:hover { 
-        transform: translateY(-8px); 
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
-        border-color: var(--primary);
-    }
-
-    .btn-add:hover { background: var(--primary); }
-
-    /* Carrinho não fica gigante, fica centralizado */
-    .checkout-card { 
-        max-width: 700px; 
-        margin: 50px auto; 
-    }
+    .menu-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .hero-carousel { height: 450px; }
+    .footer-grid { grid-template-columns: repeat(3, 1fr); text-align: left; }
+    .checkout-card { max-width: 800px; margin: 60px auto; }
+    
+    .menu-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 }
 
-/* Ajuste para Tablets (Telas Médias) */
-@media (min-width: 600px) and (max-width: 1023px) {
-    .menu-grid { grid-template-columns: 1fr 1fr; }
-    .hero-carousel { height: 280px; }
+/* Mobile Ajuste */
+@media (max-width: 600px) {
+    .nav-brand h1 { font-size: 1rem; }
+    .hero-carousel { height: 180px; }
 }
