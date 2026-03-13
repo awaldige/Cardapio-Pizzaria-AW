@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pizzaria AW | Cardápio Digital</title>
-    
     <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -14,104 +12,91 @@
 <body>
 
     <header class="main-header">
-        <div class="header-content">
-            <div class="logo-area">
-                <img src="assets/img/logo%20aw.png" alt="Pizzaria AW" class="logo">
-                <div class="brand-text">
+        <div class="header-container">
+            <div class="brand">
+                <img src="assets/img/logo%20aw.png" alt="Logo" class="logo-img">
+                <div class="brand-info">
                     <h1>Pizzaria AW</h1>
-                    <span class="status"><i class="fas fa-circle"></i> Aberto Agora</span>
+                    <span class="status-badge"><i class="fas fa-circle"></i> Aberto</span>
                 </div>
             </div>
-            <button class="cart-icon-btn" onclick="document.getElementById('order-summary').scrollIntoView({behavior: 'smooth'})">
-                <i class="fas fa-shopping-bag"></i>
-                <span id="cart-count">0</span>
-            </button>
+            <div class="header-actions">
+                <button class="cart-toggle" onclick="scrollToCart()">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="gallery" class="carousel">
+        <section class="carousel">
             <div class="carousel-container">
-                <div class="carousel-slide active"><img src="assets/img/camarao.jpg" alt="Camarão"></div>
-                <div class="carousel-slide"><img src="assets/img/pizza%20variadas.jpg" alt="Variadas"></div>
-                <div class="carousel-slide"><img src="assets/img/pizza.jpg" alt="Pizza"></div>
-                <div class="carousel-slide"><img src="assets/img/pizzas.jpg" alt="Pizzas"></div>
-                <div class="carousel-slide"><img src="assets/img/pizzas1.jpg" alt="Pizzas 1"></div>
-                <div class="carousel-slide"><img src="assets/img/portuguesa.jpg" alt="Portuguesa"></div>
+                <div class="carousel-slide active"><img src="assets/img/camarao.jpg"></div>
+                <div class="carousel-slide"><img src="assets/img/pizza%20variadas.jpg"></div>
+                <div class="carousel-slide"><img src="assets/img/pizza.jpg"></div>
+                <div class="carousel-slide"><img src="assets/img/pizzas.jpg"></div>
+                <div class="carousel-slide"><img src="assets/img/pizzas1.jpg"></div>
+                <div class="carousel-slide"><img src="assets/img/portuguesa.jpg"></div>
             </div>
-            <button class="carousel-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            
-            <div class="carousel-indicators">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
+            <div class="carousel-indicators" id="indicators"></div>
+        </section>
+
+        <section class="user-id-section">
+            <div class="input-box">
+                <i class="fas fa-user-tag"></i>
+                <input type="text" id="client-name" placeholder="Como podemos te chamar?">
             </div>
         </section>
 
         <section class="sticky-search">
-            <div class="search-box">
+            <div class="search-bar">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="Buscar no cardápio...">
-            </div>
-        </section>
-
-        <section class="client-info-section">
-            <h3 class="section-subtitle">Identificação do Pedido</h3>
-            <div class="input-group">
-                <i class="fas fa-user"></i>
-                <input type="text" id="client-name" placeholder="Digite seu nome completo aqui">
+                <input type="text" id="search-input" placeholder="O que você deseja comer hoje?">
             </div>
         </section>
 
         <div id="menu-container"></div>
 
-        <section id="order-summary" class="order-container">
-            <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
-            <div id="order-list">
-                <p class="empty-msg">Seu carrinho está vazio.</p>
+        <section id="order-summary" class="modern-cart">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
+                <button class="clear-cart" onclick="clearCart()">Limpar</button>
             </div>
-
-            <div class="payment-area">
-                <p>Forma de Pagamento:</p>
-                <select id="payment">
-                    <option value="Pix">Pix (Rápido e Seguro)</option>
-                    <option value="Cartão">Cartão na Entrega</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                </select>
-            </div>
-
-            <div class="total-bar">
-                <span>Total</span>
-                <span id="total-price">R$ 0,00</span>
-            </div>
-
-            <button id="finalizar-pedido" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> FINALIZAR NO WHATSAPP
-            </button>
-        </section>
-
-        <section class="contact-section">
-            <h2 class="category-title">📍 Nossa Localização</h2>
-            <div class="contact-card">
-                <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Endereço:</strong> Rua Aluísio Azevedo, 297 - Santana, SP</p>
-                    <p><i class="fas fa-phone"></i> <strong>WhatsApp:</strong> (11) 98587-8638</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Aluisio+Azevedo+297+Santana+SP" target="_blank" class="maps-link">
-                        <i class="fas fa-directions"></i> Abrir no Google Maps
-                    </a>
+            
+            <div id="order-list" class="cart-items-list">
+                <div class="empty-state">
+                    <i class="fas fa-pizza-slice"></i>
+                    <p>Seu carrinho está vazio</p>
                 </div>
             </div>
+
+            <div class="cart-footer">
+                <div class="payment-method">
+                    <label><i class="fas fa-credit-card"></i> Pagamento:</label>
+                    <select id="payment">
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão">Cartão (Entrega)</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                
+                <div class="total-container">
+                    <span>Total do Pedido</span>
+                    <span id="total-price">R$ 0,00</span>
+                </div>
+
+                <button id="finalizar-pedido" class="checkout-btn">
+                    <i class="fab fa-whatsapp"></i> FINALIZAR PEDIDO
+                </button>
+            </div>
+        </section>
+
+        <section class="address-footer">
+            <p><i class="fas fa-map-marker-alt"></i> Rua Aluísio Azevedo, 297 - Santana</p>
+            <a href="https://maps.google.com/?q=Rua+Aluísio+Azevedo+297+Santana" target="_blank">Ver no Mapa</a>
         </section>
     </main>
-
-    <footer class="main-footer">
-        <p><strong>Pizzaria AW</strong></p>
-        <p class="footer-bottom">© 2026 | André Waldige</p>
-    </footer>
 
     <script src="js/script.js"></script>
 </body>
