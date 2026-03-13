@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pizzaria AW | Cardápio Digital</title>
     
-    <link rel="icon" type="image/jpeg" href="assets/img/pizzaria aw.jpg">
+    <link rel="icon" type="image/png" href="assets/img/logo-aw.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,7 +16,7 @@
     <header class="main-header">
         <div class="header-content">
             <div class="logo-area">
-                <img src="assets/img/pizzaria aw.jpg" alt="Pizzaria AW" class="logo">
+                <img src="assets/img/logo-aw.png" alt="Pizzaria AW" class="logo">
                 <div class="brand-text">
                     <h1>Pizzaria AW</h1>
                     <span class="status"><i class="fas fa-circle"></i> Aberto Agora</span>
@@ -33,63 +32,60 @@
     <main>
         <section id="gallery" class="carousel">
             <div class="carousel-container">
-                <div class="carousel-slide active"><img src="assets/img/pepperoni.jpg" alt="Pizza de Pepperoni"></div>
-                <div class="carousel-slide"><img src="assets/img/Pizza variadas.jpg" alt="Nossas Pizzas"></div>
-                <div class="carousel-slide"><img src="assets/img/deliciosa-pizza.jpg" alt="Margherita Especial"></div>
+                <div class="carousel-slide active"><img src="assets/img/pepperoni.jpg" alt="Destaque 1"></div>
+                <div class="carousel-slide"><img src="assets/img/pizza-variadas.jpg" alt="Destaque 2"></div>
+                <div class="carousel-slide"><img src="assets/img/deliciosa-pizza.jpg" alt="Destaque 3"></div>
             </div>
             <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
             <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
         </section>
 
-        <section id="search" class="sticky-search">
+        <section class="sticky-search">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="O que vamos pedir hoje?">
+                <input type="text" id="search-input" placeholder="Buscar no cardápio...">
             </div>
         </section>
 
         <section class="client-info-section">
             <div class="input-group">
-                <label for="client-name">Seu Nome:</label>
-                <input type="text" id="client-name" placeholder="Digite seu nome para o pedido...">
+                <i class="fas fa-user"></i>
+                <input type="text" id="client-name" placeholder="Seu nome para o pedido">
             </div>
         </section>
 
         <div id="menu-container"></div>
 
         <section id="order-summary" class="order-container">
-            <h3><i class="fas fa-shopping-basket"></i> Meu Carrinho</h3>
-            <hr>
+            <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
             <div id="order-list">
-                <p class="empty-msg">Seu carrinho está vazio.</p>
+                <p class="empty-msg">Nenhum item adicionado.</p>
             </div>
 
             <div class="payment-area">
-                <label for="payment">Forma de Pagamento:</label>
+                <p>Forma de Pagamento:</p>
                 <select id="payment">
-                    <option value="pix">PIX</option>
-                    <option value="cartao">Cartão (Entregador)</option>
-                    <option value="dinheiro">Dinheiro</option>
+                    <option value="Pix">Pix (Desconto)</option>
+                    <option value="Cartão">Cartão na Entrega</option>
+                    <option value="Dinheiro">Dinheiro</option>
                 </select>
             </div>
 
             <div class="total-bar">
-                <span>Total:</span>
+                <span>Total</span>
                 <span id="total-price">R$ 0,00</span>
             </div>
 
             <button id="finalizar-pedido" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
+                <i class="fab fa-whatsapp"></i> ENVIAR PARA O WHATSAPP
             </button>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="footer-content">
-            <p><strong>Pizzaria AW</strong></p>
-            <p>Rua da Pizza, 123 - São Paulo/SP</p>
-            <p class="footer-bottom">&copy; 2026 Pizzaria AW | Desenvolvido por André Waldige</p>
-        </div>
+        <p><strong>Pizzaria AW</strong></p>
+        <p>Qualidade que você sente no sabor.</p>
+        <p class="footer-bottom">&copy; 2026 | Desenvolvido por André Waldige</p>
     </footer>
 
     <script src="js/script.js"></script>
