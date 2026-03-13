@@ -6,96 +6,96 @@
     <title>Pizzaria AW | Cardápio Digital</title>
     <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="header-container">
-            <div class="brand">
-                <img src="assets/img/logo%20aw.png" alt="Logo" class="logo-img">
-                <div class="brand-info">
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/img/logo%20aw.png" alt="Logo" class="nav-logo">
+                <div>
                     <h1>Pizzaria AW</h1>
-                    <span class="status-badge"><i class="fas fa-circle"></i> Aberto</span>
+                    <small><i class="fas fa-circle status-on"></i> Aberto para pedidos</small>
                 </div>
             </div>
-            <div class="header-actions">
-                <button class="cart-toggle" onclick="scrollToCart()">
-                    <i class="fas fa-shopping-basket"></i>
-                    <span id="cart-count">0</span>
-                </button>
+            <div class="nav-cart" onclick="scrollToElement('order-summary')">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cart-count">0</span>
             </div>
         </div>
     </header>
 
-    <main>
-        <section class="carousel">
-            <div class="carousel-container">
-                <div class="carousel-slide active"><img src="assets/img/camarao.jpg"></div>
-                <div class="carousel-slide"><img src="assets/img/pizza%20variadas.jpg"></div>
-                <div class="carousel-slide"><img src="assets/img/pizza.jpg"></div>
-                <div class="carousel-slide"><img src="assets/img/pizzas.jpg"></div>
-                <div class="carousel-slide"><img src="assets/img/pizzas1.jpg"></div>
-                <div class="carousel-slide"><img src="assets/img/portuguesa.jpg"></div>
-            </div>
-            <div class="carousel-indicators" id="indicators"></div>
-        </section>
-
-        <section class="user-id-section">
-            <div class="input-box">
-                <i class="fas fa-user-tag"></i>
-                <input type="text" id="client-name" placeholder="Como podemos te chamar?">
+    <main class="content-wrapper">
+        <section class="hero-carousel">
+            <div class="slides">
+                <div class="slide active"><img src="assets/img/camarao.jpg"></div>
+                <div class="slide"><img src="assets/img/pizza%20variadas.jpg"></div>
+                <div class="slide"><img src="assets/img/pizza.jpg"></div>
+                <div class="slide"><img src="assets/img/pizzas.jpg"></div>
+                <div class="slide"><img src="assets/img/pizzas1.jpg"></div>
+                <div class="slide"><img src="assets/img/portuguesa.jpg"></div>
             </div>
         </section>
 
-        <section class="sticky-search">
-            <div class="search-bar">
+        <section class="form-section">
+            <div class="input-card">
+                <label>Seu Nome</label>
+                <div class="input-field">
+                    <i class="far fa-user"></i>
+                    <input type="text" id="client-name" placeholder="Ex: André Waldige">
+                </div>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-field">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="O que você deseja comer hoje?">
+                <input type="text" id="search-input" placeholder="O que deseja comer?">
             </div>
         </section>
 
         <div id="menu-container"></div>
 
-        <section id="order-summary" class="modern-cart">
-            <div class="cart-header">
-                <h3><i class="fas fa-shopping-cart"></i> Seu Pedido</h3>
-                <button class="clear-cart" onclick="clearCart()">Limpar</button>
+        <section id="order-summary" class="checkout-card">
+            <div class="checkout-header">
+                <h2><i class="fas fa-receipt"></i> Resumo do Pedido</h2>
+                <button class="btn-clear" onclick="clearCart()">Limpar</button>
             </div>
             
-            <div id="order-list" class="cart-items-list">
-                <div class="empty-state">
-                    <i class="fas fa-pizza-slice"></i>
-                    <p>Seu carrinho está vazio</p>
-                </div>
+            <div id="order-list" class="checkout-items">
+                <p class="empty-text">Adicione itens para começar seu pedido</p>
             </div>
 
-            <div class="cart-footer">
-                <div class="payment-method">
-                    <label><i class="fas fa-credit-card"></i> Pagamento:</label>
+            <div class="checkout-footer">
+                <div class="payment-box">
+                    <span>Pagamento:</span>
                     <select id="payment">
                         <option value="Pix">Pix</option>
-                        <option value="Cartão">Cartão (Entrega)</option>
+                        <option value="Cartão">Cartão na Entrega</option>
                         <option value="Dinheiro">Dinheiro</option>
                     </select>
                 </div>
                 
-                <div class="total-container">
-                    <span>Total do Pedido</span>
-                    <span id="total-price">R$ 0,00</span>
+                <div class="total-row">
+                    <span>Total</span>
+                    <strong id="total-price">R$ 0,00</strong>
                 </div>
 
-                <button id="finalizar-pedido" class="checkout-btn">
-                    <i class="fab fa-whatsapp"></i> FINALIZAR PEDIDO
+                <button id="finalizar-pedido" class="btn-confirm">
+                    <i class="fab fa-whatsapp"></i> CONCLUIR VIA WHATSAPP
                 </button>
             </div>
         </section>
 
-        <section class="address-footer">
-            <p><i class="fas fa-map-marker-alt"></i> Rua Aluísio Azevedo, 297 - Santana</p>
-            <a href="https://maps.google.com/?q=Rua+Aluísio+Azevedo+297+Santana" target="_blank">Ver no Mapa</a>
-        </section>
+        <footer class="footer-contact">
+            <div class="address-box">
+                <p><strong>Pizzaria AW</strong></p>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Aluísio Azevedo, 297 - Santana</p>
+                <a href="https://maps.google.com/?cid=8665940934030414402&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="btn-map">Ver no Google Maps</a>
+            </div>
+        </footer>
     </main>
 
     <script src="js/script.js"></script>
