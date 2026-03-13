@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header class="main-header">
         <div class="header-content">
             <div class="logo-area">
-                <img src="logo aw.png" alt="Pizzaria AW" class="logo">
+                <img src="assets/img/logo aw.png" alt="Pizzaria AW" class="logo">
                 <div class="brand-text">
                     <h1>Pizzaria AW</h1>
                     <span class="status"><i class="fas fa-circle"></i> Aberto Agora</span>
@@ -33,37 +33,12 @@
     <main>
         <section id="gallery" class="carousel">
             <div class="carousel-container">
-                <div class="carousel-slide active">
-                    <img src="pepperoni.jpg" alt="Pizza de Pepperoni">
-                </div>
-                <div class="carousel-slide">
-                    <img src="Pizza variadas.jpg" alt="Nossas Pizzas Variadas" loading="lazy">
-                </div>
-                <div class="carousel-slide">
-                    <img src="deliciosa-pizza.jpg" alt="Pizza Margherita Especial" loading="lazy">
-                </div>
-                <div class="carousel-slide">
-                    <img src="rucula.jpg" alt="Pizza de Calabresa Acebolada" loading="lazy">
-                </div>
-                <div class="carousel-slide">
-                    <img src="camarao.jpg" alt="Nossas Bebidas Geladas" loading="lazy">
-                </div>
-                <div class="carousel-slide">
-                    <img src="portuguesa.jpg" alt="Sobremesas da Casa" loading="lazy">
-                </div>
+                <div class="carousel-slide active"><img src="assets/img/pepperoni.jpg" alt="Pizza de Pepperoni"></div>
+                <div class="carousel-slide"><img src="assets/img/Pizza variadas.jpg" alt="Nossas Pizzas"></div>
+                <div class="carousel-slide"><img src="assets/img/deliciosa-pizza.jpg" alt="Margherita Especial"></div>
             </div>
-
-            <button class="carousel-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
-
-            <div class="carousel-indicators">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+            <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
         </section>
 
         <section id="search" class="sticky-search">
@@ -73,15 +48,29 @@
             </div>
         </section>
 
-        <div id="menu-container">
+        <section class="client-info-section">
+            <div class="input-group">
+                <label for="client-name">Seu Nome:</label>
+                <input type="text" id="client-name" placeholder="Digite seu nome para o pedido...">
             </div>
+        </section>
+
+        <div id="menu-container"></div>
 
         <section id="order-summary" class="order-container">
             <h3><i class="fas fa-shopping-basket"></i> Meu Carrinho</h3>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-            
+            <hr>
             <div id="order-list">
-                <p style="text-align: center; color: #999; padding: 20px;">Seu carrinho está vazio.</p>
+                <p class="empty-msg">Seu carrinho está vazio.</p>
+            </div>
+
+            <div class="payment-area">
+                <label for="payment">Forma de Pagamento:</label>
+                <select id="payment">
+                    <option value="pix">PIX</option>
+                    <option value="cartao">Cartão (Entregador)</option>
+                    <option value="dinheiro">Dinheiro</option>
+                </select>
             </div>
 
             <div class="total-bar">
@@ -90,7 +79,7 @@
             </div>
 
             <button id="finalizar-pedido" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO VIA WHATSAPP
+                <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
             </button>
         </section>
     </main>
@@ -99,15 +88,10 @@
         <div class="footer-content">
             <p><strong>Pizzaria AW</strong></p>
             <p>Rua da Pizza, 123 - São Paulo/SP</p>
-            <div style="margin: 15px 0;">
-                <i class="fab fa-instagram" style="margin: 0 10px; font-size: 1.2rem;"></i>
-                <i class="fab fa-facebook" style="margin: 0 10px; font-size: 1.2rem;"></i>
-            </div>
             <p class="footer-bottom">&copy; 2026 Pizzaria AW | Desenvolvido por André Waldige</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
