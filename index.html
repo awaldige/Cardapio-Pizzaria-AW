@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pizzaria AW | Cardápio Digital</title>
     
-    <link rel="icon" type="image/png" href="assets/img/logo-aw.png">
+    <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     <header class="main-header">
         <div class="header-content">
             <div class="logo-area">
-                <img src="assets/img/logo-aw.png" alt="Pizzaria AW" class="logo">
+                <img src="assets/img/logo%20aw.png" alt="Pizzaria AW" class="logo">
                 <div class="brand-text">
                     <h1>Pizzaria AW</h1>
                     <span class="status"><i class="fas fa-circle"></i> Aberto Agora</span>
@@ -32,12 +32,24 @@
     <main>
         <section id="gallery" class="carousel">
             <div class="carousel-container">
-                <div class="carousel-slide active"><img src="assets/img/pepperoni.jpg" alt="Destaque 1"></div>
-                <div class="carousel-slide"><img src="assets/img/pizza-variadas.jpg" alt="Destaque 2"></div>
-                <div class="carousel-slide"><img src="assets/img/deliciosa-pizza.jpg" alt="Destaque 3"></div>
+                <div class="carousel-slide active"><img src="assets/img/logo%20aw.png" alt="Logo AW"></div>
+                <div class="carousel-slide"><img src="assets/img/pepperoni.jpg" alt="Pepperoni"></div>
+                <div class="carousel-slide"><img src="assets/img/camarao.jpg" alt="Camarão"></div>
+                <div class="carousel-slide"><img src="assets/img/portuguesa.jpg" alt="Portuguesa"></div>
+                <div class="carousel-slide"><img src="assets/img/deliciosa-pizza.jpg" alt="Especial"></div>
+                <div class="carousel-slide"><img src="assets/img/Pizza%20variadas.jpg" alt="Variadas"></div>
             </div>
-            <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+            
+            <div class="carousel-indicators">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
         </section>
 
         <section class="sticky-search">
