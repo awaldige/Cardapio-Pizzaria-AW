@@ -16,7 +16,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
 }
 .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
 .logo-area { display: flex; align-items: center; gap: 10px; }
-.logo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; }
+.logo { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; }
 .brand-text h1 { font-size: 1.1rem; margin: 0; }
 .status { font-size: 0.7rem; opacity: 0.9; display: block; }
 .status i { color: #2ecc71; margin-right: 3px; font-size: 0.6rem; vertical-align: middle; }
@@ -38,7 +38,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
 .carousel-container { width: 100%; height: 100%; }
 .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s; }
 .carousel-slide.active { opacity: 1; }
-.carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
 
 .carousel-prev, .carousel-next {
     position: absolute; top: 50%; transform: translateY(-50%);
@@ -53,31 +53,37 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
 /* ==========================================
    MENU E CARDS
    ========================================== */
-.category-title { padding: 0 15px; color: var(--primary); font-size: 1.3rem; margin: 25px 0 10px; font-weight: 700; }
-.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; padding: 0 15px; }
+.category-title { padding: 0 15px; color: var(--primary); font-size: 1.3rem; margin: 25px 0 10px; font-weight: 700; border-left: 5px solid var(--primary); margin-left: 15px; }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 0 15px; }
 
 .menu-card {
     background: var(--white); border-radius: 18px; padding: 20px;
     box-shadow: var(--shadow); transition: 0.3s;
+    display: flex; flex-direction: column; justify-content: space-between;
 }
 
-.menu-card h4 { margin: 0 0 10px 0; font-size: 1.1rem; color: #1a1a1a; }
+.menu-card h4 { margin: 0 0 5px 0; font-size: 1.1rem; color: #1a1a1a; }
 
-/* Estilo das Opções (Selects e Checkbox) */
+/* Descrição e Preço Simples (Doces/Bebidas) */
+.desc-text { font-size: 0.82rem; color: #666; margin-bottom: 12px; line-height: 1.4; }
+.price-simple { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; }
+
+/* Estilo das Opções (Pizzas) */
 .pizza-options {
-    background: #f9f9f9; padding: 12px; border-radius: 12px; margin-bottom: 15px;
+    background: #f9f9f9; padding: 12px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #f0f0f0;
 }
 .option-select {
     width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ddd;
-    font-family: 'Poppins', sans-serif; margin-bottom: 10px; outline: none;
+    font-family: 'Poppins', sans-serif; margin-bottom: 10px; outline: none; font-size: 0.85rem;
 }
-.half-check { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 5px 0; }
+.half-check { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; margin: 5px 0; color: #444; }
 
 .add-btn {
     width: 100%; background: var(--primary); color: white; border: none;
     padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px; transition: filter 0.2s;
 }
+.add-btn:active { transform: scale(0.98); }
 
 /* ==========================================
    CARRINHO E FORMULÁRIO
@@ -87,7 +93,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
 .client-info-section { margin: 0 15px 20px; }
 .client-info-section input {
     width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #eee;
-    font-family: 'Poppins', sans-serif; outline: none; box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; outline: none; box-sizing: border-box; font-size: 1rem;
 }
 .client-info-section input:focus { border-color: var(--primary); }
 
@@ -95,14 +101,17 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem;
 }
-.remove-btn { background: none; border: none; color: #ff4757; cursor: pointer; font-size: 1.1rem; }
+.cart-item i { color: #ff4757; cursor: pointer; padding: 5px; }
 
-.total-bar { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: bold; margin: 20px 0; padding-top: 15px; border-top: 2px solid #f5f6f7; }
+.payment-area { margin: 15px 0; font-size: 0.9rem; }
+.payment-area select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-top: 5px; font-family: inherit; }
+
+.total-bar { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: bold; margin: 20px 0; padding-top: 15px; border-top: 2px solid #f5f6f7; color: var(--primary); }
 
 .btn-whatsapp { 
     width: 100%; background: var(--accent); color: white; border: none; 
     padding: 18px; border-radius: 50px; font-weight: bold; font-size: 1.1rem; 
-    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
 /* Busca */
@@ -117,4 +126,8 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; col
 .main-footer { background: #1a1a1a; color: white; padding: 40px 15px; text-align: center; }
 .footer-bottom { margin-top: 10px; font-size: 0.8rem; opacity: 0.5; }
 
-@media (min-width: 1000px) { .carousel { height: 400px; } }
+/* Responsividade */
+@media (min-width: 1000px) { 
+    .carousel { height: 400px; }
+    .menu-grid { grid-template-columns: repeat(3, 1fr); }
+}
