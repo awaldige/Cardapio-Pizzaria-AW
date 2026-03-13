@@ -9,23 +9,11 @@
     --shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* --- RESET E GERAL --- */
-* { 
-    box-sizing: border-box; 
-    font-family: 'Inter', sans-serif; 
-    margin: 0; 
-    padding: 0; 
-    -webkit-tap-highlight-color: transparent; 
-}
+/* --- RESET --- */
+* { box-sizing: border-box; font-family: 'Inter', sans-serif; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { background: #f4f4f4; color: var(--text-main); line-height: 1.5; overflow-x: hidden; }
 
-body { 
-    background: #f4f4f4; 
-    color: var(--text-main); 
-    line-height: 1.5; 
-    overflow-x: hidden; 
-}
-
-/* --- NAVBAR --- */
+/* --- NAVBAR RESPONSIVA --- */
 .navbar { 
     background: var(--white); 
     border-bottom: 1px solid var(--border); 
@@ -38,33 +26,30 @@ body {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    max-width: 800px;
+    width: 95%; /* No celular usa quase tudo */
+    max-width: 1400px; /* No PC expande até 1400px */
     margin: 0 auto; 
-    padding: 0 15px;
 }
 .nav-brand { display: flex; align-items: center; gap: 10px; }
-.nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gray); }
-.nav-brand h1 { font-size: 1.1rem; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; }
-.status-on { color: #27ae60; font-size: 0.65rem; font-weight: 600; display: block; }
+.nav-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.nav-brand h1 { font-size: 1.1rem; font-weight: 800; color: var(--dark); }
 
 .nav-cart { 
     background: var(--dark); 
     color: white; 
-    padding: 10px 16px; 
+    padding: 8px 14px; 
     border-radius: 50px; 
-    cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
-    box-shadow: var(--shadow);
 }
-#cart-count { background: var(--primary); font-size: 0.75rem; padding: 2px 7px; border-radius: 50%; margin-left: 8px; font-weight: bold; }
 
-/* --- CONTEÚDO --- */
+/* --- CONTEÚDO (A MÁGICA DA LARGURA) --- */
 .content-wrapper { 
-    max-width: 800px; 
+    width: 95%; /* Garante que no celular não sobre muito espaço nas laterais */
+    max-width: 1400px; /* No Desktop, permite que o site "abra" na tela */
     margin: 0 auto; 
-    padding: 15px; 
+    padding: 15px 0; 
 }
 
 /* --- CARROSSEL --- */
@@ -75,53 +60,27 @@ body {
     margin-bottom: 25px; 
     position: relative;
     box-shadow: var(--shadow);
-    background: #ddd;
 }
-.slides { width: 100%; height: 100%; }
-.slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease; }
-.slide.active { opacity: 1; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- INPUTS E BUSCA --- */
-.input-field { 
-    background: var(--white); 
-    border-radius: 12px; 
-    padding: 2px 15px; 
-    display: flex; 
-    align-items: center; 
-    border: 1px solid var(--border);
-    transition: 0.3s;
-    margin-bottom: 12px;
-}
-.input-field:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1); }
-.input-field input { border: none; padding: 12px 5px; width: 100%; outline: none; font-size: 1rem; color: var(--text-main); }
-.input-field i { color: #a0a0a0; margin-right: 5px; }
-
-/* --- GRID DO MENU --- */
-.category-title { 
-    font-size: 1.3rem; 
-    margin: 35px 0 15px; 
-    font-weight: 800; 
-    color: var(--dark); 
-}
+/* --- GRID DO MENU (MOBILE-FIRST) --- */
+.category-title { font-size: 1.3rem; margin: 30px 0 15px; font-weight: 800; }
 .menu-grid { 
     display: grid; 
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* 1 Coluna no celular */
     gap: 15px; 
 }
 
-/* CARD DE ITEM */
 .menu-card { 
     background: var(--white); 
     border-radius: var(--radius); 
-    padding: 20px; 
+    padding: 18px; 
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 .menu-card h4 { font-size: 1.05rem; color: var(--dark); }
-.menu-card p { font-size: 0.85rem; color: #7f8c8d; margin: 8px 0 15px; line-height: 1.4; }
+.menu-card p { font-size: 0.85rem; color: #7f8c8d; margin: 5px 0 15px; }
 
 .btn-add { 
     width: 100%; 
@@ -132,123 +91,56 @@ body {
     border-radius: 10px; 
     font-weight: 700; 
     cursor: pointer;
-    transition: background 0.2s;
 }
 
-/* MEIO A MEIO */
-.half-box { 
-    background: var(--gray); 
-    padding: 10px; 
-    border-radius: 10px; 
-    margin-bottom: 12px; 
-    border: 1px dashed #ddd; 
-}
-.half-box label { font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 5px; cursor: pointer; }
-.half-box select { 
-    width: 100%; 
-    padding: 8px; 
-    border-radius: 6px; 
-    border: 1px solid #ddd; 
-    font-size: 0.85rem; 
-    outline: none;
-}
-
-/* --- CARRINHO / CHECKOUT --- */
+/* --- CARRINHO --- */
 .checkout-card { 
     background: var(--white); 
     border-radius: var(--radius); 
-    margin: 40px 0; 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12); 
+    margin: 30px 0; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
     border: 1px solid var(--border); 
 }
-.checkout-header { 
-    padding: 20px; 
-    border-bottom: 2px dashed #eee; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-}
-.btn-clear { background: none; border: none; color: #999; cursor: pointer; text-decoration: underline; font-size: 0.8rem; }
-.checkout-items { padding: 10px 20px; }
-.item-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 12px 0; 
-    border-bottom: 1px solid #f8f9fa; 
-    font-size: 0.9rem;
-}
-.total-row { 
-    display: flex; 
-    justify-content: space-between; 
-    font-size: 1.5rem; 
-    font-weight: 800; 
-    margin: 20px 0; 
-    color: var(--dark);
-}
-
-.btn-whatsapp { 
-    width: 100%; 
-    background: #25d366; 
-    color: white; 
-    border: none; 
-    padding: 18px; 
-    border-radius: 14px; 
-    font-weight: 800; 
-    font-size: 1.1rem; 
-    cursor: pointer; 
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-/* --- FOOTER --- */
-.footer-contact { 
-    background: var(--dark); 
-    color: #fff; 
-    padding: 40px 20px; 
-    text-align: center; 
-}
-.btn-map { color: var(--primary); text-decoration: none; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
 
 /* ==========================================
-   RESPONSIVIDADE (TABLET E DESKTOP)
+   CONFIGURAÇÃO PARA DESKTOP (PC)
    ========================================== */
-
-/* Tablets */
-@media (min-width: 600px) {
-    .menu-grid { grid-template-columns: 1fr 1fr; }
-    .hero-carousel { height: 250px; }
-}
-
-/* Desktops */
 @media (min-width: 1024px) {
-    .nav-container, .content-wrapper { max-width: 1100px; }
-    
-    .hero-carousel { height: 400px; margin-bottom: 40px; }
-    
+    /* Faz o site ocupar 90% da largura da tela para não ficar só no meio */
+    .nav-container, .content-wrapper { 
+        width: 90%; 
+    }
+
+    /* 3 Colunas de pizzas para preencher a largura */
     .menu-grid { 
         grid-template-columns: repeat(3, 1fr); 
         gap: 25px; 
     }
 
-    .menu-card { transition: all 0.3s ease; }
+    /* Banner maior no PC */
+    .hero-carousel { 
+        height: 400px; 
+        margin-bottom: 40px; 
+    }
+
+    /* Efeito de hover no PC */
     .menu-card:hover { 
         transform: translateY(-8px); 
-        box-shadow: 0 12px 24px rgba(0,0,0,0.1); 
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
         border-color: var(--primary);
     }
 
     .btn-add:hover { background: var(--primary); }
 
-    .checkout-card { max-width: 600px; margin: 60px auto; }
+    /* Carrinho não fica gigante, fica centralizado */
+    .checkout-card { 
+        max-width: 700px; 
+        margin: 50px auto; 
+    }
 }
 
-/* Telas muito pequenas */
-@media (max-width: 350px) {
-    .nav-brand h1 { font-size: 0.9rem; }
-    .nav-cart { padding: 8px 12px; }
-    .hero-carousel { height: 140px; }
+/* Ajuste para Tablets (Telas Médias) */
+@media (min-width: 600px) and (max-width: 1023px) {
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .hero-carousel { height: 280px; }
 }
