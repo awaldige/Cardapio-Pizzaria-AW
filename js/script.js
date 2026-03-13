@@ -1,6 +1,6 @@
 /**
  * PIZZARIA AW - LÓGICA COMPLETA E ATUALIZADA
- * Itens, Meio a Meio, Carrinho e WhatsApp
+ * Integração com CSS Premium (Carrossel, Cupom e Nome)
  */
 
 const menuData = {
@@ -43,9 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSearch();
 });
 
-// --- RENDERIZAÇÃO DO CARDÁPIO ---
+// --- RENDERIZAÇÃO ---
 function renderMenu() {
     const container = document.getElementById('menu-container');
+    if(!container) return;
+    
     let html = '';
 
     // Pizzas Salgadas
@@ -58,13 +60,13 @@ function renderMenu() {
                     <h4 style="margin:0;">${p.name}</h4>
                     <strong style="color:var(--primary)">R$ ${p.price.toFixed(2)}</strong>
                 </div>
-                <p style="font-size:0.85rem; color:#777; margin:8px 0 15px 0;">${p.desc}</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0 15px 0;">${p.desc}</p>
                 
                 <div class="half-box">
                     <label style="font-size:0.75rem; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:5px;">
                         <input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?
                     </label>
-                    <select id="second-flavor-${i}" style="display:none; width:100%; margin-top:10px; padding:8px; border-radius:8px; border:1px solid #ddd; font-size:0.85rem;">
+                    <select id="second-flavor-${i}" style="display:none; width:100%; margin-top:10px; padding:8px; border-radius:8px; border:1px solid var(--border); font-size:0.85rem; outline:none;">
                         <option value="">Escolha o 2º sabor...</option>
                         ${menuData.pizzas.map(pz => `<option value="${pz.name}">${pz.name}</option>`).join('')}
                     </select>
@@ -75,7 +77,6 @@ function renderMenu() {
     });
     html += '</div>';
 
-    // Seções Simples
     html += renderSimpleSection("🍰 Sobremesas", menuData.doces);
     html += renderSimpleSection("🥤 Bebidas", menuData.bebidas);
 
@@ -92,7 +93,7 @@ function renderSimpleSection(title, items) {
                     <h4 style="margin:0;">${item.name}</h4>
                     <strong style="color:var(--primary)">R$ ${item.price.toFixed(2)}</strong>
                 </div>
-                <p style="font-size:0.85rem; color:#777; margin:8px 0 15px 0;">${item.desc}</p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin:8px 0 15px 0;">${item.desc}</p>
             </div>
             <button onclick="addSimpleToCart('${item.name}', ${item.price})" class="btn-add">Adicionar</button>
         </div>`;
@@ -100,7 +101,7 @@ function renderSimpleSection(title, items) {
     return html + '</div>';
 }
 
-// --- FUNÇÕES DO CARRINHO ---
+// --- LOGICA CARRINHO ---
 window.toggleHalf = (i) => {
     const select = document.getElementById(`second-flavor-${i}`);
     select.style.display = document.getElementById(`is-half-${i}`).checked ? 'block' : 'none';
@@ -139,14 +140,16 @@ function updateCart() {
     const countDisp = document.getElementById('cart-count');
 
     if (cart.length === 0) {
-        list.innerHTML = `<p style="text-align:center; padding:30px; color:#999; font-style:italic;">Nenhum item adicionado...</p>`;
+        list.innerHTML = `<p style="text-align:center; padding:30px; color:#999; font-style:italic;">Seu carrinho está vazio...</p>`;
     } else {
         list.innerHTML = cart.map((item, idx) => `
             <div class="item-row">
-                <div style="font-weight:600;">${item.name}</div>
-                <div style="display:flex; align-items:center; gap:12px">
-                    <span>R$ ${item.price.toFixed(2)}</span>
-                    <i class="fas fa-trash-alt" onclick="removeItem(${idx})" style="color:#e74c3c; cursor:pointer; font-size:0.9rem;"></i>
+                <div style="flex:1;">
+                    <span style="display:block; font-size:1rem; font-weight:700;">${item.name}</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:15px">
+                    <span style="font-weight:700;">R$ ${item.price.toFixed(2)}</span>
+                    <i class="fas fa-trash-alt" onclick="removeItem(${idx})" style="color:var(--primary); cursor:pointer; font-size:1rem;"></i>
                 </div>
             </div>
         `).join('');
@@ -154,24 +157,22 @@ function updateCart() {
 
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     totalDisp.innerText = `R$ ${total.toFixed(2)}`;
-    countDisp.innerText = cart.length;
+    if(countDisp) countDisp.innerText = cart.length;
 }
 
 window.removeItem = (idx) => { cart.splice(idx, 1); updateCart(); };
 
-window.clearCart = () => {
-    if(cart.length > 0 && confirm("Limpar todo o carrinho?")) {
-        cart = [];
-        updateCart();
-    }
-};
-
-// --- CARROSSEL E BUSCA ---
+// --- CARROSSEL REFORMULADO ---
 function startCarousel() {
     const slides = document.querySelectorAll('.slide');
-    let current = 0;
     if(slides.length === 0) return;
+
+    let current = 0;
     
+    // Inicializa o primeiro slide
+    slides.forEach(s => s.classList.remove('active'));
+    slides[0].classList.add('active');
+
     setInterval(() => {
         slides[current].classList.remove('active');
         current = (current + 1) % slides.length;
@@ -179,8 +180,12 @@ function startCarousel() {
     }, 4000);
 }
 
+// --- BUSCA ---
 function setupSearch() {
-    document.getElementById('search-input').addEventListener('input', (e) => {
+    const searchInput = document.getElementById('search-input');
+    if(!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         document.querySelectorAll('.item-card').forEach(card => {
             const name = card.getAttribute('data-name').toLowerCase();
@@ -190,29 +195,32 @@ function setupSearch() {
 }
 
 // --- ENVIO WHATSAPP ---
-document.getElementById('finalizar-pedido').addEventListener('click', () => {
-    const nome = document.getElementById('client-name').value.trim();
-    if (!nome) {
-        alert("Ops! Precisamos do seu nome para o pedido.");
-        document.getElementById('client-name').focus();
-        return;
-    }
-    if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
-    }
+const btnFinalizar = document.getElementById('finalizar-pedido');
+if(btnFinalizar) {
+    btnFinalizar.addEventListener('click', () => {
+        const nome = document.getElementById('client-name').value.trim();
+        const pag = document.getElementById('payment').value;
+        const total = document.getElementById('total-price').innerText;
 
-    const pag = document.getElementById('payment').value;
-    const total = document.getElementById('total-price').innerText;
-    
-    let msg = `*🍕 PIZZARIA AW - NOVO PEDIDO*%0A`;
-    msg += `*Cliente:* ${nome}%0A`;
-    msg += `------------------------------%0A`;
-    cart.forEach(item => msg += `• ${item.name} - R$ ${item.price.toFixed(2)}%0A`);
-    msg += `------------------------------%0A`;
-    msg += `*Pagamento:* ${pag}%0A`;
-    msg += `*TOTAL:* ${total}%0A%0A`;
-    msg += `*📍 Endereço:* Rua Aluísio Azevedo, 297 - Santana`;
+        if (!nome) {
+            alert("Por favor, informe seu nome antes de finalizar!");
+            document.getElementById('client-name').focus();
+            return;
+        }
+        if (cart.length === 0) {
+            alert("Adicione pelo menos um item ao carrinho!");
+            return;
+        }
 
-    window.open(`https://wa.me/5511985878638?text=${msg}`);
-});
+        let msg = `*🍕 PIZZARIA AW - NOVO PEDIDO*%0A`;
+        msg += `*Cliente:* ${nome}%0A`;
+        msg += `------------------------------%0A`;
+        cart.forEach(item => msg += `• ${item.name} - R$ ${item.price.toFixed(2)}%0A`);
+        msg += `------------------------------%0A`;
+        msg += `*Pagamento:* ${pag}%0A`;
+        msg += `*TOTAL:* ${total}%0A%0A`;
+        msg += `*📍 Retirada:* Rua Aluísio Azevedo, 297 - Santana`;
+
+        window.open(`https://wa.me/5511985878638?text=${msg}`);
+    });
+}
