@@ -20,7 +20,7 @@ const menuData = {
     ],
     bebidas: [
         { name: "Coca-Cola 2L", price: 14.00, desc: "Garrafa Pet gelada" },
-        { name: "Suco Natural", price: 10.00, desc: "Laranja ou Limão 500ml" }
+        { name: "Suco Natural", price: 10.00, desc: "Laranja ou Limão 500ml" },
         { name: "Cerveja", price: 6.00, desc: "Heineken" }
         
     ]
