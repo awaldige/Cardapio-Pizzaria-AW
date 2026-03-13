@@ -60,9 +60,10 @@
         </section>
 
         <section class="client-info-section">
+            <h3 class="section-subtitle">Identificação do Pedido</h3>
             <div class="input-group">
                 <i class="fas fa-user"></i>
-                <input type="text" id="client-name" placeholder="Digite seu nome para o pedido">
+                <input type="text" id="client-name" placeholder="Digite seu nome completo aqui">
             </div>
         </section>
 
@@ -71,13 +72,13 @@
         <section id="order-summary" class="order-container">
             <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
             <div id="order-list">
-                <p class="empty-msg">Nenhum item adicionado.</p>
+                <p class="empty-msg">Seu carrinho está vazio.</p>
             </div>
 
             <div class="payment-area">
                 <p>Forma de Pagamento:</p>
                 <select id="payment">
-                    <option value="Pix">Pix (Desconto)</option>
+                    <option value="Pix">Pix (Rápido e Seguro)</option>
                     <option value="Cartão">Cartão na Entrega</option>
                     <option value="Dinheiro">Dinheiro</option>
                 </select>
@@ -89,18 +90,18 @@
             </div>
 
             <button id="finalizar-pedido" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> ENVIAR PARA O WHATSAPP
+                <i class="fab fa-whatsapp"></i> FINALIZAR NO WHATSAPP
             </button>
         </section>
 
         <section class="contact-section">
-            <h2 class="category-title">📍 Onde Estamos</h2>
+            <h2 class="category-title">📍 Nossa Localização</h2>
             <div class="contact-card">
                 <div class="contact-info">
-                    <p><strong>Endereço:</strong> Rua Aluísio Azevedo, 297 - Santana, SP</p>
-                    <p><strong>Telefone:</strong> (11) 98587-8638</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Aluísio+Azevedo+297+Santana+SP" target="_blank" class="maps-link">
-                        <i class="fas fa-map-marked-alt"></i> Ver no Google Maps
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Endereço:</strong> Rua Aluísio Azevedo, 297 - Santana, SP</p>
+                    <p><i class="fas fa-phone"></i> <strong>WhatsApp:</strong> (11) 98587-8638</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Rua+Aluisio+Azevedo+297+Santana+SP" target="_blank" class="maps-link">
+                        <i class="fas fa-directions"></i> Abrir no Google Maps
                     </a>
                 </div>
             </div>
@@ -109,7 +110,7 @@
 
     <footer class="main-footer">
         <p><strong>Pizzaria AW</strong></p>
-        <p class="footer-bottom">&copy; 2026 | Desenvolvido por André Waldige</p>
+        <p class="footer-bottom">© 2026 | André Waldige</p>
     </footer>
 
     <script src="js/script.js"></script>
