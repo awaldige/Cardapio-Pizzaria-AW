@@ -1,55 +1,101 @@
 :root {
     --primary: #c0392b;
     --dark: #1e1e1e;
-    --radius: 12px;
+    --bg-body: #f5f6fa;
     --shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-body { background: #f5f6fa; color: #333; }
+body { background: var(--bg-body); color: #333; }
 
-/* CENTRALIZAÇÃO DESKTOP */
+/* CENTRALIZAÇÃO DO DESKTOP */
 .nav-container, .content-wrapper {
     width: 95%;
-    max-width: 1100px;
-    margin: 0 auto;
+    max-width: 1100px; /* Impede que o site "estique" demais em telas grandes */
+    margin: 0 auto;    /* Centraliza o bloco na tela */
 }
 
+/* NAVBAR */
 .navbar { background: white; padding: 10px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-.nav-brand { display: flex; align-items: center; gap: 15px; }
-.nav-logo { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-logo { height: 55px; width: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
 
-/* GRID RESPONSIVO */
-#menu-container { width: 100%; }
+/* CARROSSEL ADAPTATIVO */
+.hero-carousel { 
+    height: 200px; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    margin: 20px 0; 
+    box-shadow: var(--shadow);
+}
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* GRID DO CARDÁPIO: 1 coluna no celular, 3 no Desktop */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
     margin-bottom: 40px;
 }
 
-.category-title { grid-column: 1/-1; margin: 30px 0 15px; font-weight: 800; font-size: 1.6rem; border-left: 5px solid var(--primary); padding-left: 15px; }
+.category-title { 
+    grid-column: 1 / -1; 
+    margin: 35px 0 15px; 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    border-left: 6px solid var(--primary);
+    padding-left: 15px;
+}
 
-.menu-card { background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+/* CARDS DOS PRODUTOS */
+.menu-card { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 15px; 
+    box-shadow: var(--shadow); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
 .menu-card:hover { transform: translateY(-5px); }
 
-/* CARROSSEL */
-.hero-carousel { height: 200px; border-radius: var(--radius); overflow: hidden; margin: 20px 0; }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+.price-tag { color: var(--primary); font-weight: 800; font-size: 1.2rem; }
 
-/* FORMULÁRIO DE CHECKOUT */
-.checkout-card { background: white; border-radius: var(--radius); margin: 40px auto; overflow: hidden; max-width: 700px; box-shadow: var(--shadow); }
-.delivery-form { padding: 25px; background: #fafafa; border-top: 2px solid #eee; }
-.form-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-bottom: 15px; }
-.form-group { margin-bottom: 15px; }
-input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; outline: none; }
-input:focus { border-color: var(--primary); }
-
-.btn-confirm { width: 100%; background: #25d366; color: white; border: none; padding: 18px; border-radius: 10px; font-weight: 800; cursor: pointer; }
-
-@media (min-width: 1024px) {
-    .hero-carousel { height: 380px; }
+/* BUSCA CENTRALIZADA */
+.search-section { margin: 20px 0; }
+.search-field { 
+    display: flex; 
+    align-items: center; 
+    background: white; 
+    padding: 15px; 
+    border-radius: 12px; 
+    box-shadow: var(--shadow);
 }
-@media (max-width: 600px) {
+.search-field input { border: none; outline: none; width: 100%; margin-left: 10px; font-size: 1rem; }
+
+/* FORMULÁRIO DE CHECKOUT (CENTRALIZADO) */
+.checkout-card { 
+    background: white; 
+    border-radius: 20px; 
+    margin: 50px auto; 
+    max-width: 800px; /* No Desktop ele não fica largo demais */
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+}
+
+.delivery-form { padding: 30px; background: #fafafa; border-top: 1px solid #eee; }
+.form-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-bottom: 15px; }
+
+/* AJUSTES PARA TELAS GRANDES (DESKTOP) */
+@media (min-width: 1024px) {
+    .hero-carousel { height: 400px; } /* Banner maior no PC */
+    .category-title { font-size: 2.2rem; }
+}
+
+/* AJUSTES PARA CELULAR (Mantendo o que já estava bom) */
+@media (max-width: 768px) {
     .form-grid { grid-template-columns: 1fr; }
+    .nav-logo { height: 45px; width: 45px; }
 }
