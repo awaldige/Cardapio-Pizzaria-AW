@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pizzaria AW | Cardápio Digital</title>
-    
     <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,7 +17,7 @@
                 <img src="assets/img/logo%20aw.png" alt="Logo" class="nav-logo">
                 <div>
                     <h1>Pizzaria AW</h1>
-                    <small><i class="fas fa-circle status-on"></i> Aberto para pedidos</small>
+                    <small><i class="fas fa-circle status-on"></i> Aberto Agora</small>
                 </div>
             </div>
             <div class="nav-cart" onclick="scrollToElement('order-summary')">
@@ -33,27 +30,17 @@
     <main class="content-wrapper">
         <section class="hero-carousel">
             <div class="slides">
-                <div class="slide active"><img src="assets/img/camarao.jpg" alt="Destaque"></div>
-                <div class="slide"><img src="assets/img/pizza%20variadas.jpg" alt="Destaque"></div>
-                <div class="slide"><img src="assets/img/pizza.jpg" alt="Destaque"></div>
-                <div class="slide"><img src="assets/img/pizzas.jpg" alt="Destaque"></div>
+                <div class="slide active"><img src="assets/img/camarao.jpg"></div>
+                <div class="slide"><img src="assets/img/pizza%20variadas.jpg"></div>
+                <div class="slide"><img src="assets/img/pizza.jpg"></div>
+                <div class="slide"><img src="assets/img/pizzas.jpg"></div>
             </div>
         </section>
 
-        <section class="form-section">
-            <div class="input-card">
-                <label for="client-name">Seu Nome</label>
-                <div class="input-field">
-                    <i class="far fa-user"></i>
-                    <input type="text" id="client-name" placeholder="Como devemos te chamar?">
-                </div>
-            </div>
-            
-            <div class="search-section">
-                <div class="search-field">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Buscar sabor ou bebida...">
-                </div>
+        <section class="search-section">
+            <div class="search-field">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Buscar sabor ou bebida...">
             </div>
         </section>
 
@@ -61,32 +48,46 @@
 
         <section id="order-summary" class="checkout-card">
             <div class="checkout-header">
-                <h2><i class="fas fa-receipt"></i> Meu Pedido</h2>
-                <button class="btn-clear" onclick="clearCart()">Limpar Tudo</button>
+                <h2><i class="fas fa-receipt"></i> Seu Pedido</h2>
+                <button class="btn-clear" onclick="clearCart()">Limpar</button>
             </div>
-            
-            <div id="order-list" class="checkout-items">
-                </div>
 
-            <div class="checkout-footer">
-                <div class="payment-box">
-                    <span>Forma de Pagamento:</span>
-                    <select id="payment">
+            <div id="order-list" class="checkout-items">
+                <p class="empty-text">Seu carrinho está vazio</p>
+            </div>
+
+            <div class="total-row">
+                <span>Total:</span>
+                <strong id="total-price">R$ 0,00</strong>
+            </div>
+
+            <form id="checkout-form" class="delivery-form">
+                <h3><i class="fas fa-map-marker-alt"></i> Dados de Entrega</h3>
+                <div class="form-group">
+                    <input type="text" id="client-name" placeholder="Nome Completo" required>
+                </div>
+                <div class="form-grid">
+                    <input type="text" id="address" placeholder="Rua e Número" required>
+                    <input type="text" id="neighborhood" placeholder="Bairro" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="reference" placeholder="Ponto de Referência (Opcional)">
+                </div>
+                <div class="form-group">
+                    <label>Forma de Pagamento</label>
+                    <select id="payment" onchange="toggleTroco()">
                         <option value="Pix">Pix</option>
-                        <option value="Cartão (Entrega)">Cartão na Entrega</option>
+                        <option value="Cartão">Cartão (Maquininha)</option>
                         <option value="Dinheiro">Dinheiro</option>
                     </select>
                 </div>
-                
-                <div class="total-row">
-                    <span>Total do Pedido:</span>
-                    <strong id="total-price">R$ 0,00</strong>
+                <div id="troco-box" class="form-group" style="display:none">
+                    <input type="number" id="troco" placeholder="Troco para quanto?">
                 </div>
-
-                <button id="finalizar-pedido" class="btn-confirm">
-                    <i class="fab fa-whatsapp"></i> CONCLUIR VIA WHATSAPP
+                <button type="submit" class="btn-confirm">
+                    <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
                 </button>
-            </div>
+            </form>
         </section>
     </main>
 
