@@ -6,7 +6,6 @@
     <title>Pizzaria AW | Cardápio Digital</title>
     
     <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
-    <link rel="apple-touch-icon" href="assets/img/logo%20aw.png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -21,7 +20,7 @@
                 <img src="assets/img/logo%20aw.png" alt="Logo" class="nav-logo">
                 <div>
                     <h1>Pizzaria AW</h1>
-                    <small><i class="fas fa-circle status-on"></i> Aberto Agora</small>
+                    <small><i class="fas fa-circle status-on"></i> Aberto para pedidos</small>
                 </div>
             </div>
             <div class="nav-cart" onclick="scrollToElement('order-summary')">
@@ -43,10 +42,18 @@
 
         <section class="form-section">
             <div class="input-card">
-                <input type="text" id="client-name" placeholder="Seu nome para o pedido">
+                <label for="client-name">Seu Nome</label>
+                <div class="input-field">
+                    <i class="far fa-user"></i>
+                    <input type="text" id="client-name" placeholder="Como devemos te chamar?">
+                </div>
             </div>
+            
             <div class="search-section">
-                <input type="text" id="search-input" placeholder="O que deseja comer?">
+                <div class="search-field">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Buscar sabor ou bebida...">
+                </div>
             </div>
         </section>
 
@@ -54,23 +61,31 @@
 
         <section id="order-summary" class="checkout-card">
             <div class="checkout-header">
-                <h2><i class="fas fa-receipt"></i> Seu Pedido</h2>
-                <button class="btn-clear" onclick="clearCart()">Limpar</button>
+                <h2><i class="fas fa-receipt"></i> Meu Pedido</h2>
+                <button class="btn-clear" onclick="clearCart()">Limpar Tudo</button>
             </div>
+            
             <div id="order-list" class="checkout-items">
-                <p class="empty-text">Carrinho vazio</p>
-            </div>
+                </div>
+
             <div class="checkout-footer">
-                <select id="payment">
-                    <option value="Pix">Pix</option>
-                    <option value="Cartão">Cartão na Entrega</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                </select>
+                <div class="payment-box">
+                    <span>Forma de Pagamento:</span>
+                    <select id="payment">
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão (Entrega)">Cartão na Entrega</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                </div>
+                
                 <div class="total-row">
-                    <span>Total:</span>
+                    <span>Total do Pedido:</span>
                     <strong id="total-price">R$ 0,00</strong>
                 </div>
-                <button id="finalizar-pedido" class="btn-confirm">PEDIR PELO WHATSAPP</button>
+
+                <button id="finalizar-pedido" class="btn-confirm">
+                    <i class="fab fa-whatsapp"></i> CONCLUIR VIA WHATSAPP
+                </button>
             </div>
         </section>
     </main>
