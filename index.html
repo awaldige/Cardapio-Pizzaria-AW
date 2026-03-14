@@ -34,33 +34,42 @@
     <main class="content-wrapper">
         <section class="hero-carousel">
             <div class="slides">
-                <div class="slide active"><img src="assets/img/camarao.jpg"></div>
-                <div class="slide"><img src="assets/img/pizza%20variadas.jpg"></div>
-                <div class="slide"><img src="assets/img/pizza.jpg"></div>
-                <div class="slide"><img src="assets/img/pizzas.jpg"></div>
+                <div class="slide active"><img src="assets/img/camarao.jpg" alt="Destaque"></div>
+                <div class="slide"><img src="assets/img/pizza%20variadas.jpg" alt="Destaque"></div>
+                <div class="slide"><img src="assets/img/pizza.jpg" alt="Destaque"></div>
+                <div class="slide"><img src="assets/img/pizzas.jpg" alt="Destaque"></div>
             </div>
         </section>
 
-        <div class="form-section">
-            <input type="text" id="client-name" placeholder="Seu nome para o pedido">
-            <input type="text" id="search-input" placeholder="Buscar no cardápio...">
-        </div>
+        <section class="form-section">
+            <div class="input-card">
+                <input type="text" id="client-name" placeholder="Seu nome para o pedido">
+            </div>
+            <div class="search-section">
+                <input type="text" id="search-input" placeholder="O que deseja comer?">
+            </div>
+        </section>
 
         <div id="menu-container"></div>
 
         <section id="order-summary" class="checkout-card">
             <div class="checkout-header">
-                <h2>Seu Pedido</h2>
-                <button onclick="clearCart()" class="btn-clear">Limpar</button>
+                <h2><i class="fas fa-receipt"></i> Seu Pedido</h2>
+                <button class="btn-clear" onclick="clearCart()">Limpar</button>
             </div>
-            <div id="order-list"></div>
+            <div id="order-list" class="checkout-items">
+                <p class="empty-text">Carrinho vazio</p>
+            </div>
             <div class="checkout-footer">
                 <select id="payment">
                     <option value="Pix">Pix</option>
                     <option value="Cartão">Cartão na Entrega</option>
                     <option value="Dinheiro">Dinheiro</option>
                 </select>
-                <div class="total-row">Total: <span id="total-price">R$ 0,00</span></div>
+                <div class="total-row">
+                    <span>Total:</span>
+                    <strong id="total-price">R$ 0,00</strong>
+                </div>
                 <button id="finalizar-pedido" class="btn-confirm">PEDIR PELO WHATSAPP</button>
             </div>
         </section>
