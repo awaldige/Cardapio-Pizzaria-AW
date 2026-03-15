@@ -67,15 +67,13 @@ Font Awesome — Ícones da interface
 
 📸 Prévia do Projeto
 
-![IMG_1300](https://github.com/user-attachments/assets/f639879f-3be1-49a3-ac68-3e38cefc8f21)
-![IMG_1301](https://github.com/user-attachments/assets/c586bb03-845c-4323-8aa6-47879083c5e6)
-![IMG_1302](https://github.com/user-attachments/assets/43faadbe-3890-4eb0-a23a-d178286bf0dc)
-![IMG_1303](https://github.com/user-attachments/assets/f7c1636b-6030-4a55-a19f-99dbf615d9e4)
-![IMG_1304](https://github.com/user-attachments/assets/746ff0e6-8af3-4d85-b3eb-f7061aabd4a5)
-![IMG_1305](https://github.com/user-attachments/assets/fad100ca-8c6a-48e4-9e4e-d50bd3baf7d2)
-![IMG_1306](https://github.com/user-attachments/assets/4d3ec2d1-975c-4594-85dc-ea25cff9ccae)
-![IMG_1308](https://github.com/user-attachments/assets/8d37c496-9e7d-4eb9-a9e7-9e2cc2ab2cb6)
-
+![Image](https://github.com/user-attachments/assets/1e5ff2c2-c250-49ea-b0dc-7c916aa5ba92)
+![Image](https://github.com/user-attachments/assets/c77cfe8c-815e-4125-a21a-c9d68563d95f)
+![Image](https://github.com/user-attachments/assets/9a6e5410-55cb-45fc-99a0-39e0568669a8)
+![Image](https://github.com/user-attachments/assets/1868f97c-d9e5-454f-81f2-15b2dac79a44)
+![Image](https://github.com/user-attachments/assets/0198d828-1984-483e-a562-aa6bb0a936b5)
+![Image](https://github.com/user-attachments/assets/bb80939e-ed36-4b96-8db4-22139b2dece7)
+![Image](https://github.com/user-attachments/assets/eac947ea-fb2e-4a27-b5f9-0724adfdde12)
 
 📂 Estrutura do Projeto
 Cardapio-Pizzaria-AW/
