@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pizzaria AW | Cardápio Digital</title>
+    
     <link rel="icon" type="image/png" href="assets/img/logo%20aw.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,15 +17,18 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <img src="assets/img/logo%20aw.png" alt="Logo" class="nav-logo">
-                <div>
+                <img src="assets/img/logo%20aw.png" alt="Logo Pizzaria AW" class="nav-logo">
+                <div class="brand-text">
                     <h1>Pizzaria AW</h1>
                     <small><i class="fas fa-circle status-on"></i> Aberto Agora</small>
                 </div>
             </div>
             <div class="nav-cart" onclick="scrollToElement('order-summary')">
-                <i class="fas fa-shopping-bag"></i>
-                <span id="cart-count">0</span>
+                <div class="cart-icon-wrapper">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count">0</span>
+                </div>
+                <span class="cart-label">Meu Pedido</span>
             </div>
         </div>
     </header>
@@ -30,66 +36,105 @@
     <main class="content-wrapper">
         <section class="hero-carousel">
             <div class="slides">
-                <div class="slide active"><img src="assets/img/camarao.jpg"></div>
-                <div class="slide"><img src="assets/img/pizza%20variadas.jpg"></div>
-                <div class="slide"><img src="assets/img/pizza.jpg"></div>
-                <div class="slide"><img src="assets/img/pizzas.jpg"></div>
+                <div class="slide active"><img src="assets/img/camarao.jpg" alt="Pizza de Camarão"></div>
+                <div class="slide"><img src="assets/img/pizza%20variadas.jpg" alt="Variedade de Sabores"></div>
+                <div class="slide"><img src="assets/img/pizza.jpg" alt="Pizza Artesanal"></div>
+                <div class="slide"><img src="assets/img/pizzas.jpg" alt="Promoção do Dia"></div>
+            </div>
+            <div class="carousel-overlay">
+                <h2>O sabor que você merece</h2>
+                <p>Ingredientes selecionados e massa artesanal</p>
             </div>
         </section>
 
         <section class="search-section">
             <div class="search-field">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="Buscar sabor ou bebida...">
+                <input type="text" id="search-input" placeholder="O que você deseja comer hoje?">
             </div>
         </section>
 
         <div id="menu-container"></div>
 
-        <section id="order-summary" class="checkout-card">
-            <div class="checkout-header">
-                <h2><i class="fas fa-receipt"></i> Seu Pedido</h2>
-                <button class="btn-clear" onclick="clearCart()">Limpar</button>
-            </div>
+        <div class="checkout-wrapper" id="order-summary">
+            
+            <section class="checkout-card">
+                <div class="checkout-header">
+                    <h2><i class="fas fa-receipt"></i> Itens Selecionados</h2>
+                    <button class="btn-clear" onclick="clearCart()">Limpar</button>
+                </div>
 
-            <div id="order-list" class="checkout-items">
-                <p class="empty-text">Seu carrinho está vazio</p>
-            </div>
+                <div id="order-list" class="checkout-items">
+                    <p class="empty-text">Seu carrinho está vazio</p>
+                </div>
 
-            <div class="total-row">
-                <span>Total:</span>
-                <strong id="total-price">R$ 0,00</strong>
-            </div>
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <strong id="total-price">R$ 0,00</strong>
+                </div>
+            </section>
 
-            <form id="checkout-form" class="delivery-form">
-                <h3><i class="fas fa-map-marker-alt"></i> Dados de Entrega</h3>
-                <div class="form-group">
-                    <input type="text" id="client-name" placeholder="Nome Completo" required>
-                </div>
-                <div class="form-grid">
-                    <input type="text" id="address" placeholder="Rua e Número" required>
-                    <input type="text" id="neighborhood" placeholder="Bairro" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="reference" placeholder="Ponto de Referência (Opcional)">
-                </div>
-                <div class="form-group">
-                    <label>Forma de Pagamento</label>
-                    <select id="payment" onchange="toggleTroco()">
-                        <option value="Pix">Pix</option>
-                        <option value="Cartão">Cartão (Maquininha)</option>
-                        <option value="Dinheiro">Dinheiro</option>
-                    </select>
-                </div>
-                <div id="troco-box" class="form-group" style="display:none">
-                    <input type="number" id="troco" placeholder="Troco para quanto?">
-                </div>
-                <button type="submit" class="btn-confirm">
-                    <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
-                </button>
-            </form>
-        </section>
+            <section class="checkout-card">
+                <form id="checkout-form" class="delivery-form">
+                    <h3><i class="fas fa-truck"></i> Dados de Entrega</h3>
+                    
+                    <div class="form-group">
+                        <label for="client-name">Nome Completo</label>
+                        <input type="text" id="client-name" placeholder="Digite seu nome" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="address">Rua e Número</label>
+                            <input type="text" id="address" placeholder="Ex: Rua Alagoas, 123" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="neighborhood">Bairro</label>
+                            <input type="text" id="neighborhood" placeholder="Bairro" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reference">Ponto de Referência</label>
+                        <input type="text" id="reference" placeholder="Ex: Próximo ao mercado">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment">Forma de Pagamento</label>
+                        <select id="payment" onchange="toggleTroco()">
+                            <option value="Pix">Pix (Pagamento na entrega)</option>
+                            <option value="Cartão">Cartão (Maquininha)</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+
+                    <div id="troco-box" class="form-group" style="display:none">
+                        <label for="troco">Troco para quanto?</label>
+                        <input type="number" id="troco" placeholder="Ex: 50">
+                    </div>
+
+                    <button type="submit" class="btn-confirm">
+                        <i class="fab fa-whatsapp"></i> FINALIZAR PEDIDO NO WHATSAPP
+                    </button>
+                </form>
+            </section>
+        </div>
     </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="assets/img/logo%20aw.png" alt="Logo">
+                <p>Pizzaria AW - Desde 2024</p>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Pizzaria AW. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>
