@@ -67,7 +67,7 @@ function createPizzaCard(p, i, category) {
         <div class="item-header"><h4>${p.name}</h4><strong class="price-tag">R$ ${p.price.toFixed(2)}</strong></div>
         <p class="item-desc">${p.desc}</p>
         <div class="half-box" style="margin: 10px 0; font-size: 0.8rem; background: #f0f0f0; padding: 8px; border-radius: 5px;">
-            <label><input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?</label>
+            <label style="cursor:pointer"><input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?</label>
             <select id="second-flavor-${i}" style="display:none; margin-top:5px; width:100%">${list.map(pz => `<option value="${pz.name}|${pz.price}">${pz.name}</option>`).join('')}</select>
         </div>
         <button onclick="addPizzaToCart(${i}, '${category}')" class="btn-add">Adicionar</button>
@@ -75,7 +75,8 @@ function createPizzaCard(p, i, category) {
 }
 
 window.toggleHalf = (i) => {
-    document.getElementById(`second-flavor-${i}`).style.display = document.getElementById(`is-half-${i}`).checked ? 'block' : 'none';
+    const select = document.getElementById(`second-flavor-${i}`);
+    select.style.display = document.getElementById(`is-half-${i}`).checked ? 'block' : 'none';
 };
 
 window.addPizzaToCart = (i, category) => {
@@ -87,6 +88,7 @@ window.addPizzaToCart = (i, category) => {
 
     if (isHalf) {
         const val = document.getElementById(`second-flavor-${i}`).value.split('|');
+        if(!val[0]) return alert("Selecione o segundo sabor!");
         finalName = `½ ${p1.name} / ½ ${val[0]}`;
         finalPrice = Math.max(p1.price, parseFloat(val[1]));
     }
@@ -98,10 +100,10 @@ window.addSimpleToCart = (name, price) => { cart.push({ name, price }); updateCa
 
 function updateCart() {
     const list = document.getElementById('order-list');
-    list.innerHTML = cart.length === 0 ? '<p>Carrinho vazio</p>' : cart.map((item, idx) => `
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+    list.innerHTML = cart.length === 0 ? '<p class="empty-text">Carrinho vazio</p>' : cart.map((item, idx) => `
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem; border-bottom:1px solid #eee; padding-bottom:5px;">
             <span>${item.name}</span>
-            <span>R$ ${item.price.toFixed(2)} <i class="fas fa-trash" onclick="removeItem(${idx})" style="color:red; cursor:pointer;"></i></span>
+            <span>R$ ${item.price.toFixed(2)} <i class="fas fa-trash" onclick="removeItem(${idx})" style="color:#c0392b; cursor:pointer; margin-left:8px;"></i></span>
         </div>`).join('');
     
     const total = cart.reduce((acc, i) => acc + i.price, 0);
@@ -110,14 +112,26 @@ function updateCart() {
 }
 
 window.removeItem = (idx) => { cart.splice(idx, 1); updateCart(); };
-window.clearCart = () => { cart = []; updateCart(); };
+window.clearCart = () => { if(confirm("Limpar carrinho?")) { cart = []; updateCart(); } };
+
+window.toggleTroco = () => {
+    document.getElementById('troco-box').style.display = (document.getElementById('payment').value === 'Dinheiro') ? 'block' : 'none';
+};
 
 document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    if(cart.length === 0) return alert("Carrinho vazio!");
+    if(cart.length === 0) return alert("Adicione itens ao carrinho!");
     
-    const dados = `*PEDIDO PIZZARIA AW*%0A*Nome:* ${document.getElementById('client-name').value}%0A*Endereço:* ${document.getElementById('address').value}, ${document.getElementById('neighborhood').value}%0A*Pagamento:* ${document.getElementById('payment').value}%0A%0A*ITENS:*%0A${cart.map(i => `- ${i.name}`).join('%0A')}%0A%0A*TOTAL: ${document.getElementById('total-price').innerText}*`;
-    window.open(`https://wa.me/5511985878638?text=${dados}`);
+    const nome = document.getElementById('client-name').value;
+    const rua = document.getElementById('address').value;
+    const bairro = document.getElementById('neighborhood').value;
+    const pag = document.getElementById('payment').value;
+    const troco = document.getElementById('troco').value;
+
+    let itensMsg = cart.map(i => `- ${i.name} (R$ ${i.price.toFixed(2)})`).join('%0A');
+    const msg = `*NOVO PEDIDO - PIZZARIA AW*%0A%0A*Cliente:* ${nome}%0A*Endereço:* ${rua}, ${bairro}%0A*Pagamento:* ${pag}${troco ? ` (Troco para R$ ${troco})` : ''}%0A%0A*PEDIDO:*%0A${itensMsg}%0A%0A*TOTAL: ${document.getElementById('total-price').innerText}*`;
+    
+    window.open(`https://wa.me/5511985878638?text=${msg}`);
 });
 
 function setupSearch() {
@@ -131,12 +145,16 @@ function setupSearch() {
 
 function startCarousel() {
     const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
     let cur = 0;
     setInterval(() => {
         slides[cur].classList.remove('active');
         cur = (cur + 1) % slides.length;
         slides[cur].classList.add('active');
-    }, 3000);
+    }, 4000);
 }
 
-function scrollToElement(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+function scrollToElement(id) { 
+    const el = document.getElementById(id);
+    window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+}
