@@ -81,14 +81,16 @@ function createPizzaCard(p, i, category) {
             <strong class="price-tag">R$ ${p.price.toFixed(2)}</strong>
         </div>
         <p class="item-desc">${p.desc}</p>
-        <div class="half-box">
-            <label><input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?</label>
-            <select id="second-flavor-${i}" style="display:none;">
+        <div class="half-box" style="background: #f9f9f9; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+            <label style="font-size: 0.8rem; font-weight: bold; cursor:pointer;">
+                <input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?
+            </label>
+            <select id="second-flavor-${i}" style="display:none; margin-top: 8px; width: 100%; padding: 5px; border-radius: 5px;">
                 <option value="">Escolha o 2º sabor...</option>
                 ${list.map(pz => `<option value="${pz.name}|${pz.price}">${pz.name}</option>`).join('')}
             </select>
         </div>
-        <button onclick="addPizzaToCart(${i}, '${category}')" class="btn-add">Adicionar ao Pedido</button>
+        <button onclick="addPizzaToCart(${i}, '${category}')" class="btn-confirm" style="padding: 12px; font-size: 0.9rem;">Adicionar ao Pedido</button>
     </div>`;
 }
 
@@ -109,7 +111,10 @@ window.addPizzaToCart = (i, category) => {
     let finalPrice = p1.price;
 
     if (isHalf) {
-        if (!secondFlavorData) return alert("Por favor, selecione o segundo sabor!");
+        if (!secondFlavorData) {
+            alert("Por favor, selecione o segundo sabor!");
+            return;
+        }
         const [name2, price2] = secondFlavorData.split('|');
         finalName = `½ ${p1.name} / ½ ${name2}`;
         finalPrice = Math.max(p1.price, parseFloat(price2));
@@ -117,6 +122,16 @@ window.addPizzaToCart = (i, category) => {
 
     cart.push({ name: finalName, price: finalPrice });
     updateCart();
+    
+    // Feedback visual de adição
+    const btn = event.target;
+    const originalText = btn.innerText;
+    btn.innerText = "✓ Adicionado";
+    btn.style.background = "#27ae60";
+    setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = "";
+    }, 1000);
 };
 
 window.addSimpleToCart = (name, price) => {
@@ -129,11 +144,13 @@ function updateCart() {
     const totalDisp = document.getElementById('total-price');
     const countDisp = document.getElementById('cart-count');
 
-    list.innerHTML = cart.length === 0 ? '<p class="empty-text">Carrinho vazio</p>' : 
+    list.innerHTML = cart.length === 0 ? '<p class="empty-text">Seu carrinho está vazio</p>' : 
         cart.map((item, idx) => `
-            <div class="item-row">
-                <span>${item.name}</span>
-                <span>R$ ${item.price.toFixed(2)} <i class="fas fa-trash-alt" onclick="removeItem(${idx})" style="color:red; cursor:pointer; margin-left:10px;"></i></span>
+            <div class="item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee;">
+                <span style="font-size: 0.9rem; font-weight: 600;">${item.name}</span>
+                <span style="font-size: 0.9rem;">R$ ${item.price.toFixed(2)} 
+                    <i class="fas fa-trash-alt" onclick="removeItem(${idx})" style="color:#e74c3c; cursor:pointer; margin-left:12px;"></i>
+                </span>
             </div>
         `).join('');
 
@@ -143,7 +160,7 @@ function updateCart() {
 }
 
 window.removeItem = (idx) => { cart.splice(idx, 1); updateCart(); };
-window.clearCart = () => { if(confirm("Limpar carrinho?")) { cart = []; updateCart(); } };
+window.clearCart = () => { if(confirm("Deseja realmente limpar seu carrinho?")) { cart = []; updateCart(); } };
 
 // 5. FINALIZAÇÃO E WHATSAPP
 window.toggleTroco = () => {
@@ -153,7 +170,10 @@ window.toggleTroco = () => {
 
 document.getElementById('checkout-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    if (cart.length === 0) return alert("Seu carrinho está vazio!");
+    if (cart.length === 0) {
+        alert("Adicione pelo menos um item para finalizar o pedido!");
+        return;
+    }
 
     const dados = {
         nome: document.getElementById('client-name').value,
@@ -165,21 +185,27 @@ document.getElementById('checkout-form').addEventListener('submit', function(e) 
     };
 
     let msg = `*🍕 NOVO PEDIDO - PIZZARIA AW*%0A%0A`;
-    msg += `*DADOS DE ENTREGA*%0A👤 Nome: ${dados.nome}%0A📍 Endereço: ${dados.rua}%0A🏘️ Bairro: ${dados.bairro}%0A🚩 Ref: ${dados.ref}%0A%0A`;
+    msg += `*DADOS DE ENTREGA*%0A👤 *Nome:* ${dados.nome}%0A📍 *Endereço:* ${dados.rua}%0A🏘️ *Bairro:* ${dados.bairro}%0A🚩 *Ref:* ${dados.ref}%0A%0A`;
     msg += `*ITENS DO PEDIDO*%0A`;
-    cart.forEach(i => msg += `• ${i.name} (R$ ${i.price.toFixed(2)})%0A`);
+    cart.forEach(i => msg += `• ${i.name} _(R$ ${i.price.toFixed(2)})_%0A`);
     msg += `%0A💳 *Pagamento:* ${dados.pag}${dados.troco ? ` (Troco para R$ ${dados.troco})` : ''}%0A`;
     msg += `💰 *TOTAL: ${document.getElementById('total-price').innerText}*`;
 
-    window.open(`https://wa.me/5511985878638?text=${msg}`);
+    // Substitua pelo seu número de WhatsApp com DDD
+    const meuNumero = "5511985878638"; 
+    window.open(`https://wa.me/${meuNumero}?text=${msg}`);
 });
 
 // 6. UTILITÁRIOS (BUSCA/CARROSSEL)
 function setupSearch() {
-    document.getElementById('search-input').addEventListener('input', (e) => {
+    const searchInput = document.getElementById('search-input');
+    if(!searchInput) return;
+    
+    searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         document.querySelectorAll('.item-card').forEach(card => {
-            card.style.display = card.dataset.name.toLowerCase().includes(term) ? 'flex' : 'none';
+            const isMatch = card.dataset.name.toLowerCase().includes(term);
+            card.style.display = isMatch ? 'flex' : 'none';
         });
     });
 }
@@ -187,7 +213,7 @@ function setupSearch() {
 function startCarousel() {
     const slides = document.querySelectorAll('.slide');
     let current = 0;
-    if (slides.length) {
+    if (slides.length > 0) {
         setInterval(() => {
             slides[current].classList.remove('active');
             current = (current + 1) % slides.length;
@@ -198,5 +224,9 @@ function startCarousel() {
 
 function scrollToElement(id) {
     const el = document.getElementById(id);
-    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    if (el) {
+        const yOffset = -100; 
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
+    }
 }
