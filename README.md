@@ -42,21 +42,12 @@ Este projeto foi desenvolvido como demonstração prática de habilidades em **F
 
 ## 📸 Prévia do Projeto
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1e5ff2c2-c250-49ea-b0dc-7c916aa5ba92" width="250" alt="Home Mobile">
-  <img src="https://github.com/user-attachments/assets/c77cfe8c-815e-4125-a21a-c9d68563d95f" width="250" alt="Cardápio Mobile">
-  <img src="https://github.com/user-attachments/assets/9a6e5410-55cb-45fc-99a0-39e0568669a8" width="250" alt="Carrinho Mobile">
-</p>
+![Captura de tela 2026-04-02 151232](https://github.com/user-attachments/assets/14bee763-38d8-432f-b4d1-bc7b6a70c7bf)
+![Captura de tela 2026-04-02 151123](https://github.com/user-attachments/assets/1eadbc07-2474-4640-944b-9cf34b461164)
+![Captura de tela 2026-04-02 151540](https://github.com/user-attachments/assets/30d56463-7db1-4115-9f1d-e2ad03e3ca66)
+![Captura de tela 2026-04-02 151515](https://github.com/user-attachments/assets/7527113b-9c54-421e-8d05-a1a72dabedbc)
+![Captura de tela 2026-04-02 151333](https://github.com/user-attachments/assets/cf3ba605-24ba-4708-80e4-6835265f4d9d)
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1868f97c-d9e5-454f-81f2-15b2dac79a44" width="350" alt="Desktop View">
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0198d828-1984-483e-a562-aa6bb0a936b5" width="250">
-  <img src="https://github.com/user-attachments/assets/bb80939e-ed36-4b96-8db4-22139b2dece7" width="250">
-  <img src="https://github.com/user-attachments/assets/eac947ea-fb2e-4a27-b5f9-0724adfdde12" width="250">
-</p>
 
 ---
 
