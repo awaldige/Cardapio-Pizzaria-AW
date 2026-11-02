@@ -1,160 +1,793 @@
+
+"use strict";
+
+/* =========================================================
+   PIZZARIA AW — CARDÁPIO ITALIANO ARTESANAL
+   Sistema demonstrativo de cardápio e pedidos
+   ========================================================= */
+
+
+/* =========================================================
+   PRODUTOS
+   ========================================================= */
+
 const menuData = {
     pizzas: [
-        { name: "Mussarela", price: 30.00, desc: "Molho de tomate, mussarela e orégano." },
-        { name: "Calabresa", price: 32.00, desc: "Calabresa fatiada, cebola e orégano." },
-        { name: "Margherita", price: 35.00, desc: "Mussarela, tomate fatiado e manjericão." },
-        { name: "Portuguesa", price: 38.00, desc: "Presunto, ovos, cebola, ervilha e mussarela." },
-        { name: "Frango c/ Catupiry", price: 38.00, desc: "Frango desfiado com Catupiry original." },
-        { name: "Napolitana", price: 36.00, desc: "Mussarela, tomate e parmesão ralado." },
-        { name: "Bacon", price: 39.00, desc: "Mussarela e fatias de bacon crocante." },
-        { name: "Quatro Queijos", price: 42.00, desc: "Mussarela, provolone, parmesão e gorgonzola." },
-        { name: "Pepperoni", price: 45.00, desc: "Mussarela e fatias de pepperoni premium." },
-        { name: "Camarão", price: 60.00, desc: "Camarão ao molho especial e Catupiry." },
-        { name: "Rúcula c/ Tomate Seco", price: 45.00, desc: "Mussarela, rúcula e tomate seco artesanal." },
-        { name: "Abobrinha", price: 38.00, desc: "Abobrinha grelhada, parmesão e alho frito." }
+        {
+            name: "Mussarela",
+            price: 30,
+            desc: "Molho de tomate, mussarela e orégano.",
+            image: "pizza.jpg"
+        },
+        {
+            name: "Calabresa",
+            price: 32,
+            desc: "Calabresa fatiada, cebola e orégano.",
+            image: "pizzas.jpg"
+        },
+        {
+            name: "Margherita",
+            price: 35,
+            desc: "Mussarela, tomate fatiado e manjericão.",
+            image: "pizza variadas.jpg"
+        },
+        {
+            name: "Portuguesa",
+            price: 38,
+            desc: "Presunto, ovos, cebola, ervilha e mussarela.",
+            image: "portuguesa.jpg"
+        },
+        {
+            name: "Frango c/ Catupiry",
+            price: 38,
+            desc: "Frango desfiado com Catupiry original.",
+            image: "pizzas1.jpg"
+        },
+        {
+            name: "Napolitana",
+            price: 36,
+            desc: "Mussarela, tomate e parmesão ralado.",
+            image: "pizza.jpg"
+        },
+        {
+            name: "Bacon",
+            price: 39,
+            desc: "Mussarela e fatias de bacon crocante.",
+            image: "pizzas.jpg"
+        },
+        {
+            name: "Quatro Queijos",
+            price: 42,
+            desc: "Mussarela, provolone, parmesão e gorgonzola.",
+            image: "pizza variadas.jpg"
+        },
+        {
+            name: "Pepperoni",
+            price: 45,
+            desc: "Mussarela e fatias de pepperoni premium.",
+            image: "pizzas1.jpg"
+        },
+        {
+            name: "Camarão",
+            price: 60,
+            desc: "Camarão ao molho especial e Catupiry.",
+            image: "camarao.jpg"
+        },
+        {
+            name: "Rúcula c/ Tomate Seco",
+            price: 45,
+            desc: "Mussarela, rúcula e tomate seco artesanal.",
+            image: "rucula.jpg"
+        },
+        {
+            name: "Abobrinha",
+            price: 38,
+            desc: "Abobrinha grelhada, parmesão e alho frito.",
+            image: "pizza variadas.jpg"
+        }
     ],
+
     doces: [
-        { name: "Chocolate com Morango", price: 40.00, desc: "Chocolate ao leite e morangos frescos." },
-        { name: "Romeu e Julieta", price: 35.00, desc: "Mussarela e goiabada cremosa." },
-        { name: "Prestígio", price: 38.00, desc: "Chocolate e coco ralado." }
+        {
+            name: "Chocolate com Morango",
+            price: 40,
+            desc: "Chocolate ao leite e morangos frescos.",
+            image: "pizza.jpg"
+        },
+        {
+            name: "Romeu e Julieta",
+            price: 35,
+            desc: "Mussarela e goiabada cremosa.",
+            image: "pizzas.jpg"
+        },
+        {
+            name: "Prestígio",
+            price: 38,
+            desc: "Chocolate e coco ralado.",
+            image: "pizza variadas.jpg"
+        }
     ],
+
     bebidas: [
-        { name: "Coca-Cola 2L", price: 14.00, desc: "Garrafa Pet gelada." },
-        { name: "Guaraná Antártica 2L", price: 12.00, desc: "Garrafa Pet gelada." },
-        { name: "Suco de Laranja 500ml", price: 10.00, desc: "Suco natural da fruta." },
-        { name: "Água Mineral 500ml", price: 5.00, desc: "Com ou sem gás." },
-        { name: "Cerveja Lata", price: 7.00, desc: "350ml gelada." }
+        {
+            name: "Coca-Cola 2L",
+            price: 14,
+            desc: "Refrigerante original para compartilhar.",
+            image: "bebidas/coca-cola-2l.avif"
+        },
+        {
+            name: "Guaraná Antarctica 2L",
+            price: 12,
+            desc: "O sabor brasileiro que combina com pizza.",
+            image: "bebidas/guarana-2l.avif"
+        },
+        {
+            name: "Suco de Laranja 500ml",
+            price: 10,
+            desc: "Uma opção cítrica para acompanhar seu pedido.",
+            image: "bebidas/suco-laranja.jpg"
+        },
+        {
+            name: "Água Mineral 500ml",
+            price: 5,
+            desc: "Uma opção leve e refrescante.",
+            image: "bebidas/agua-mineral.avif"
+        },
+        {
+            name: "Cerveja em Lata 350ml",
+            price: 7,
+            desc: "Cerveja em lata, servida bem gelada.",
+            image: "bebidas/cerveja-lata.webp"
+        },
+        {
+            name: "Cerveja Long Neck 330ml",
+            price: 9,
+            desc: "Garrafa long neck para acompanhar sua pizza.",
+            image: "bebidas/cerveja-long-neck.webp"
+        }
     ]
 };
 
-let cart = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+/* =========================================================
+   CONFIGURAÇÕES E ESTADO
+   ========================================================= */
+
+let cart = [];
+let carouselTimer = null;
+
+const formatPrice = (value) =>
+    value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+
+const imagePath = (filename) =>
+    `assets/img/${filename
+        .split("/")
+        .map(encodeURIComponent)
+        .join("/")}`;
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
     renderMenu();
     startCarousel();
     setupSearch();
+    setupCheckout();
+    setupPayment();
+    setupSocialLinks();
+    updateCart();
 });
 
+
+/* =========================================================
+   RENDERIZAÇÃO DO CARDÁPIO
+   ========================================================= */
+
 function renderMenu() {
-    const container = document.getElementById('menu-container');
-    let html = '';
+    const container = document.getElementById("menu-container");
 
-    html += '<h2 class="category-title">🍕 Pizzas Salgadas</h2><div class="menu-grid">';
-    menuData.pizzas.forEach((p, i) => { html += createPizzaCard(p, i, 'pizzas'); });
-    html += '</div>';
+    if (!container) return;
 
-    html += '<h2 class="category-title">🍫 Pizzas Doces</h2><div class="menu-grid">';
-    menuData.doces.forEach((p, i) => { html += createPizzaCard(p, i + 100, 'doces'); });
-    html += '</div>';
+    const categories = [
+        {
+            key: "pizzas",
+            title: "Pizzas Salgadas",
+            subtitle: "Receitas clássicas para compartilhar",
+            icon: "fa-pizza-slice"
+        },
+        {
+            key: "doces",
+            title: "Pizzas Doces",
+            subtitle: "Um toque doce para terminar bem",
+            icon: "fa-heart"
+        },
+        {
+            key: "bebidas",
+            title: "Bebidas",
+            subtitle: "Para acompanhar seu pedido",
+            icon: "fa-glass-water"
+        }
+    ];
 
-    html += '<h2 class="category-title">🥤 Bebidas</h2><div class="menu-grid">';
-    menuData.bebidas.forEach((b) => {
-        html += `
-        <div class="menu-card item-card" data-name="${b.name}">
-            <div class="item-header"><h4>${b.name}</h4><strong class="price-tag">R$ ${b.price.toFixed(2)}</strong></div>
-            <p class="item-desc">${b.desc}</p>
-            <button onclick="addSimpleToCart('${b.name}', ${b.price})" class="btn-add">Adicionar</button>
-        </div>`;
-    });
-    html += '</div>';
-    container.innerHTML = html;
+    container.innerHTML = categories.map((category) => {
+        const products = menuData[category.key];
+
+        return `
+            <section
+                class="menu-category"
+                aria-labelledby="heading-${category.key}"
+            >
+                <div class="category-intro">
+                    <span class="category-kicker">
+                        <i
+                            class="fas ${category.icon}"
+                            aria-hidden="true"
+                        ></i>
+                        FEITO COM CARINHO
+                    </span>
+
+                    <h2
+                        class="category-title"
+                        id="heading-${category.key}"
+                    >
+                        ${category.title}
+                    </h2>
+
+                    <p>${category.subtitle}</p>
+                </div>
+
+                <div class="menu-grid">
+                    ${products.map((product, index) => {
+                        if (category.key === "bebidas") {
+                            return createDrinkCard(product, index);
+                        }
+
+                        return createPizzaCard(
+                            product,
+                            index,
+                            category.key
+                        );
+                    }).join("")}
+                </div>
+            </section>
+        `;
+    }).join("");
 }
 
-function createPizzaCard(p, i, category) {
-    const list = menuData[category];
+
+/* =========================================================
+   CARD DE PIZZA
+   ========================================================= */
+
+function createPizzaCard(product, index, category) {
+    const productId = `${category}-${index}`;
+    const image = imagePath(product.image);
+
+    const flavorOptions = menuData[category]
+        .map((flavor, flavorIndex) => `
+            <option
+                value="${flavorIndex}"
+                ${flavorIndex === index ? "selected" : ""}
+            >
+                ${flavor.name}
+            </option>
+        `)
+        .join("");
+
     return `
-    <div class="menu-card item-card" data-name="${p.name}">
-        <div class="item-header"><h4>${p.name}</h4><strong class="price-tag">R$ ${p.price.toFixed(2)}</strong></div>
-        <p class="item-desc">${p.desc}</p>
-        <div class="half-box" style="margin: 10px 0; font-size: 0.8rem; background: #f0f0f0; padding: 8px; border-radius: 5px;">
-            <label style="cursor:pointer"><input type="checkbox" onchange="toggleHalf(${i})" id="is-half-${i}"> MEIO A MEIO?</label>
-            <select id="second-flavor-${i}" style="display:none; margin-top:5px; width:100%">${list.map(pz => `<option value="${pz.name}|${pz.price}">${pz.name}</option>`).join('')}</select>
-        </div>
-        <button onclick="addPizzaToCart(${i}, '${category}')" class="btn-add">Adicionar</button>
-    </div>`;
+        <article
+            class="menu-card item-card"
+            data-name="${product.name.toLocaleLowerCase("pt-BR")}"
+        >
+            <div class="product-image-wrap">
+                <img
+                    class="product-image"
+                    src="${image}"
+                    alt="Pizza ${product.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >
+
+                <span class="product-tag">
+                    ${category === "doces" ? "Pizzas doces" : "Da casa"}
+                </span>
+            </div>
+
+            <div class="item-card-content">
+                <div class="item-header">
+                    <h3>${product.name}</h3>
+
+                    <strong class="price-tag">
+                        ${formatPrice(product.price)}
+                    </strong>
+                </div>
+
+                <p class="item-desc">${product.desc}</p>
+
+                <div class="half-box">
+                    <label for="is-half-${productId}">
+                        <input
+                            type="checkbox"
+                            id="is-half-${productId}"
+                            onchange="toggleHalf('${productId}')"
+                        >
+                        <span>Quero meio a meio</span>
+                    </label>
+
+                    <select
+                        id="second-flavor-${productId}"
+                        aria-label="Escolha o segundo sabor"
+                        style="display: none"
+                    >
+                        ${flavorOptions}
+                    </select>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-add"
+                    onclick="addPizzaToCart(
+                        '${productId}',
+                        '${category}',
+                        ${index}
+                    )"
+                >
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    Adicionar ao pedido
+                </button>
+            </div>
+        </article>
+    `;
 }
 
-window.toggleHalf = (i) => {
-    const select = document.getElementById(`second-flavor-${i}`);
-    select.style.display = document.getElementById(`is-half-${i}`).checked ? 'block' : 'none';
+
+/* =========================================================
+   CARD DE BEBIDA COM IMAGEM
+   ========================================================= */
+
+function createDrinkCard(product, index) {
+    const image = imagePath(product.image);
+
+    return `
+        <article
+            class="menu-card item-card drink-card"
+            data-name="${product.name.toLocaleLowerCase("pt-BR")}"
+        >
+            <div class="drink-image-wrap">
+                <img
+                    class="drink-product-image"
+                    src="${image}"
+                    alt="${product.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none'"
+                >
+
+                <span class="product-tag">Para acompanhar</span>
+            </div>
+
+            <div class="item-card-content">
+                <div class="item-header">
+                    <h3>${product.name}</h3>
+
+                    <strong class="price-tag">
+                        ${formatPrice(product.price)}
+                    </strong>
+                </div>
+
+                <p class="item-desc">${product.desc}</p>
+
+                <button
+                    type="button"
+                    class="btn-add"
+                    onclick="addSimpleToCart(${index})"
+                >
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    Adicionar ao pedido
+                </button>
+            </div>
+        </article>
+    `;
+}
+
+
+/* =========================================================
+   PIZZAS MEIO A MEIO
+   ========================================================= */
+
+window.toggleHalf = (productId) => {
+    const checkbox = document.getElementById(
+        `is-half-${productId}`
+    );
+
+    const select = document.getElementById(
+        `second-flavor-${productId}`
+    );
+
+    if (!checkbox || !select) return;
+
+    select.style.display = checkbox.checked ? "block" : "none";
 };
 
-window.addPizzaToCart = (i, category) => {
-    const list = menuData[category];
-    const idx = i >= 100 ? i - 100 : i;
-    const p1 = list[idx];
-    const isHalf = document.getElementById(`is-half-${i}`).checked;
-    let finalName = p1.name, finalPrice = p1.price;
+window.addPizzaToCart = (productId, category, index) => {
+    const product = menuData[category]?.[index];
 
-    if (isHalf) {
-        const val = document.getElementById(`second-flavor-${i}`).value.split('|');
-        if(!val[0]) return alert("Selecione o segundo sabor!");
-        finalName = `½ ${p1.name} / ½ ${val[0]}`;
-        finalPrice = Math.max(p1.price, parseFloat(val[1]));
+    if (!product) return;
+
+    const checkbox = document.getElementById(
+        `is-half-${productId}`
+    );
+
+    const select = document.getElementById(
+        `second-flavor-${productId}`
+    );
+
+    let finalName = product.name;
+    let finalPrice = product.price;
+
+    if (checkbox?.checked) {
+        const secondIndex = Number(select.value);
+        const secondFlavor = menuData[category]?.[secondIndex];
+
+        if (!secondFlavor) {
+            alert("Selecione o segundo sabor.");
+            return;
+        }
+
+        finalName = `½ ${product.name} / ½ ${secondFlavor.name}`;
+
+        // O preço do meio a meio considera o sabor mais caro.
+        finalPrice = Math.max(
+            product.price,
+            secondFlavor.price
+        );
     }
-    cart.push({ name: finalName, price: finalPrice });
+
+    cart.push({
+        name: finalName,
+        price: finalPrice
+    });
+
+    updateCart();
+
+    if (checkbox) {
+        checkbox.checked = false;
+    }
+
+    if (select) {
+        select.style.display = "none";
+    }
+};
+
+
+/* =========================================================
+   BEBIDAS E CARRINHO
+   ========================================================= */
+
+window.addSimpleToCart = (index) => {
+    const product = menuData.bebidas[index];
+
+    if (!product) return;
+
+    cart.push({
+        name: product.name,
+        price: product.price
+    });
+
     updateCart();
 };
 
-window.addSimpleToCart = (name, price) => { cart.push({ name, price }); updateCart(); };
-
 function updateCart() {
-    const list = document.getElementById('order-list');
-    list.innerHTML = cart.length === 0 ? '<p class="empty-text">Carrinho vazio</p>' : cart.map((item, idx) => `
-        <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem; border-bottom:1px solid #eee; padding-bottom:5px;">
-            <span>${item.name}</span>
-            <span>R$ ${item.price.toFixed(2)} <i class="fas fa-trash" onclick="removeItem(${idx})" style="color:#c0392b; cursor:pointer; margin-left:8px;"></i></span>
-        </div>`).join('');
-    
-    const total = cart.reduce((acc, i) => acc + i.price, 0);
-    document.getElementById('total-price').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    document.getElementById('cart-count').innerText = cart.length;
+    const list = document.getElementById("order-list");
+    const totalElement = document.getElementById("total-price");
+    const countElement = document.getElementById("cart-count");
+
+    if (!list || !totalElement || !countElement) return;
+
+    if (cart.length === 0) {
+        list.innerHTML = `
+            <div class="empty-cart">
+                <i
+                    class="fas fa-basket-shopping"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="empty-text">Seu carrinho está vazio.</p>
+
+                <span>Escolha suas delícias favoritas!</span>
+            </div>
+        `;
+    } else {
+        list.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <span class="cart-item-name">${item.name}</span>
+                    <strong>${formatPrice(item.price)}</strong>
+                </div>
+
+                <button
+                    type="button"
+                    class="remove-item"
+                    aria-label="Remover ${item.name}"
+                    onclick="removeItem(${index})"
+                >
+                    <i class="fas fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+        `).join("");
+    }
+
+    const total = cart.reduce(
+        (sum, item) => sum + item.price,
+        0
+    );
+
+    totalElement.textContent = formatPrice(total);
+    countElement.textContent = cart.length;
 }
 
-window.removeItem = (idx) => { cart.splice(idx, 1); updateCart(); };
-window.clearCart = () => { if(confirm("Limpar carrinho?")) { cart = []; updateCart(); } };
+window.removeItem = (index) => {
+    if (
+        !Number.isInteger(index) ||
+        index < 0 ||
+        index >= cart.length
+    ) {
+        return;
+    }
 
-window.toggleTroco = () => {
-    document.getElementById('troco-box').style.display = (document.getElementById('payment').value === 'Dinheiro') ? 'block' : 'none';
+    cart.splice(index, 1);
+    updateCart();
 };
 
-document.getElementById('checkout-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    if(cart.length === 0) return alert("Adicione itens ao carrinho!");
-    
-    const nome = document.getElementById('client-name').value;
-    const rua = document.getElementById('address').value;
-    const bairro = document.getElementById('neighborhood').value;
-    const pag = document.getElementById('payment').value;
-    const troco = document.getElementById('troco').value;
+window.clearCart = () => {
+    if (cart.length === 0) return;
 
-    let itensMsg = cart.map(i => `- ${i.name} (R$ ${i.price.toFixed(2)})`).join('%0A');
-    const msg = `*NOVO PEDIDO - PIZZARIA AW*%0A%0A*Cliente:* ${nome}%0A*Endereço:* ${rua}, ${bairro}%0A*Pagamento:* ${pag}${troco ? ` (Troco para R$ ${troco})` : ''}%0A%0A*PEDIDO:*%0A${itensMsg}%0A%0A*TOTAL: ${document.getElementById('total-price').innerText}*`;
-    
-    window.open(`https://wa.me/5511985878638?text=${msg}`);
-});
+    if (confirm("Deseja realmente limpar seu pedido?")) {
+        cart.length = 0;
+        updateCart();
+    }
+};
+
+
+/* =========================================================
+   PAGAMENTO E TROCO
+   ========================================================= */
+
+function setupPayment() {
+    const payment = document.getElementById("payment");
+
+    if (!payment) return;
+
+    payment.addEventListener("change", window.toggleTroco);
+
+    window.toggleTroco();
+}
+
+window.toggleTroco = () => {
+    const payment = document.getElementById("payment");
+    const box = document.getElementById("troco-box");
+    const input = document.getElementById("troco");
+
+    if (!payment || !box || !input) return;
+
+    const cashPayment = payment.value === "Dinheiro";
+
+    box.style.display = cashPayment ? "block" : "none";
+
+    input.required = false;
+
+    if (!cashPayment) {
+        input.value = "";
+    }
+};
+
+
+/* =========================================================
+   FINALIZAÇÃO DEMONSTRATIVA
+   Não envia mensagens nem abre o WhatsApp.
+   ========================================================= */
+
+function setupCheckout() {
+    const form = document.getElementById("checkout-form");
+
+    if (!form) return;
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (cart.length === 0) {
+            alert("Adicione pelo menos um item ao pedido.");
+            return;
+        }
+
+        const nome = document
+            .getElementById("client-name")
+            .value.trim();
+
+        const endereco = document
+            .getElementById("address")
+            .value.trim();
+
+        const bairro = document
+            .getElementById("neighborhood")
+            .value.trim();
+
+        const referencia = document
+            .getElementById("reference")
+            .value.trim();
+
+        const pagamento = document
+            .getElementById("payment")
+            .value;
+
+        const troco = document
+            .getElementById("troco")
+            .value.trim();
+
+        // Guardamos o resumo antes de limpar o carrinho.
+        const total = cart.reduce(
+            (sum, item) => sum + item.price,
+            0
+        );
+
+        const itens = cart
+            .map(item => (
+                `• ${item.name} — ${formatPrice(item.price)}`
+            ))
+            .join("\n");
+
+        const mensagem = [
+            "PEDIDO DEMONSTRATIVO — PIZZARIA AW",
+            "",
+            `Cliente: ${nome}`,
+            `Endereço: ${endereco}, ${bairro}`,
+            referencia ? `Referência: ${referencia}` : "",
+            `Pagamento selecionado: ${pagamento}`,
+            pagamento === "Dinheiro" && troco
+                ? `Troco para: R$ ${troco}`
+                : "",
+            "",
+            "ITENS DO PEDIDO",
+            itens,
+            "",
+            `TOTAL: ${formatPrice(total)}`,
+            "",
+            "Simulação para demonstração do sistema.",
+            "Nenhum pedido real foi enviado."
+        ].filter(Boolean).join("\n");
+
+        // A confirmação aparece antes de zerar o carrinho.
+        alert(mensagem);
+
+        // Limpa todos os itens e atualiza o total e o contador.
+        cart.length = 0;
+        updateCart();
+
+        // Prepara o formulário para um novo teste.
+        form.reset();
+
+        // Atualiza a exibição do campo de troco.
+        if (typeof window.toggleTroco === "function") {
+            window.toggleTroco();
+        }
+    });
+}
+
+
+/* =========================================================
+   REDES SOCIAIS DEMONSTRATIVAS
+   ========================================================= */
+
+function setupSocialLinks() {
+    document
+        .querySelectorAll(".footer-social a[data-social]")
+        .forEach(link => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                const rede = link.dataset.social;
+
+                alert(
+                    `${rede} — Pizzaria AW\n\n` +
+                    "Este link é demonstrativo e não está " +
+                    "conectado a uma conta real."
+                );
+            });
+        });
+}
+
+
+/* =========================================================
+   BUSCA DE PRODUTOS
+   ========================================================= */
 
 function setupSearch() {
-    document.getElementById('search-input').addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        document.querySelectorAll('.item-card').forEach(card => {
-            card.style.display = card.dataset.name.toLowerCase().includes(term) ? 'flex' : 'none';
+    const searchInput = document.getElementById("search-input");
+
+    if (!searchInput) return;
+
+    searchInput.addEventListener("input", (event) => {
+        const term = event.target.value
+            .trim()
+            .toLocaleLowerCase("pt-BR");
+
+        document.querySelectorAll(".item-card").forEach(card => {
+            const name = card.dataset.name || "";
+
+            const description =
+                card.querySelector(".item-desc")?.textContent || "";
+
+            const content = `${name} ${description}`
+                .toLocaleLowerCase("pt-BR");
+
+            card.style.display = content.includes(term)
+                ? ""
+                : "none";
+        });
+
+        document.querySelectorAll(".menu-category").forEach(section => {
+            const visibleCards = [
+                ...section.querySelectorAll(".item-card")
+            ].some(card => card.style.display !== "none");
+
+            section.style.display = visibleCards ? "" : "none";
         });
     });
 }
 
+
+/* =========================================================
+   CARROSSEL DE IMAGENS
+   ========================================================= */
+
 function startCarousel() {
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length === 0) return;
-    let cur = 0;
-    setInterval(() => {
-        slides[cur].classList.remove('active');
-        cur = (cur + 1) % slides.length;
-        slides[cur].classList.add('active');
-    }, 4000);
+    const slides = [
+        ...document.querySelectorAll(".slide")
+    ];
+
+    if (slides.length < 2) return;
+
+    if (carouselTimer) {
+        window.clearInterval(carouselTimer);
+    }
+
+    let current = slides.findIndex(slide =>
+        slide.classList.contains("active")
+    );
+
+    if (current < 0) {
+        current = 0;
+    }
+
+    slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === current);
+    });
+
+    carouselTimer = window.setInterval(() => {
+        slides[current].classList.remove("active");
+
+        current = (current + 1) % slides.length;
+
+        slides[current].classList.add("active");
+    }, 4500);
 }
 
-function scrollToElement(id) { 
-    const el = document.getElementById(id);
-    window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-}
+
+/* =========================================================
+   NAVEGAÇÃO SUAVE
+   ========================================================= */
+
+window.scrollToElement = (id) => {
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+};

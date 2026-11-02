@@ -1,155 +1,182 @@
 # 🍕 Cardápio Pizzaria AW
 
-Cardápio digital responsivo e interativo desenvolvido para pizzarias, com foco em uma experiência simples e intuitiva para consulta de produtos e montagem de pedidos.
+Cardápio digital responsivo e interativo desenvolvido para o segmento de pizzarias, com foco em uma experiência simples, intuitiva e agradável para consulta de produtos e montagem de pedidos.
 
-O projeto permite navegar pelas categorias, pesquisar produtos, personalizar pizzas meio a meio, montar o carrinho e enviar o pedido diretamente pelo WhatsApp.
+O projeto apresenta uma interface moderna para visualizar produtos, navegar por categorias, personalizar pizzas meio a meio e gerenciar itens em um carrinho de compras.
+
+Desenvolvido como projeto demonstrativo de portfólio da **AW TECHNOLOGY**.
 
 ---
 
 ## 🌐 Projeto Online
 
-🔗 **Acesse o projeto:**
+🚀 **Acesse a demonstração:**
+
 https://cardapio-pizzaria-aw.vercel.app/
 
 ---
 
 ## ✨ Funcionalidades
 
-## 🍕 Cardápio Digital
+### 🍕 Cardápio Digital
+- Exibição de pizzas, bebidas e sobremesas.
+- Organização de produtos por categorias.
+- Busca de produtos.
+- Exibição de informações e preços.
+- Interface intuitiva e responsiva.
 
-- Exibição de pizzas, bebidas e outros produtos
-- Organização por categorias
-- Busca de produtos
-- Informações e preços dos produtos
-- Interface adaptada para dispositivos móveis
+### 🍕 Pizza Meio a Meio
+- Seleção de dois sabores.
+- Combinação de sabores em uma única pizza.
+- Cálculo automático do valor conforme os sabores escolhidos.
+- Personalização diretamente pelo cardápio.
 
-## 🍕 Pizza Meio a Meio
+### 🛒 Carrinho de Compras
+- Adição de produtos.
+- Alteração de quantidades.
+- Remoção de itens.
+- Cálculo automático do subtotal.
+- Atualização do total do pedido.
+- Armazenamento do carrinho no navegador.
 
-- Seleção de dois sabores
-- Combinação de sabores em uma única pizza
-- Cálculo automático do valor
-- Personalização diretamente pelo cardápio
+### 📲 Finalização Demonstrativa
+- Simulação da finalização do pedido.
+- Exibição de mensagem informativa.
+- Limpeza do carrinho após a finalização demonstrativa.
 
-## 🛒 Carrinho de Compras
+**Observação:** o projeto é demonstrativo. Não realiza processamento real de pedidos, pagamentos ou envio de pedidos para uma pizzaria.
 
-- Adição de produtos
-- Alteração de quantidade
-- Remoção de itens
-- Cálculo automático do subtotal
-- Cálculo do total do pedido
+### 📍 Localização e Contato
+- Área de contato no rodapé.
+- Mapa incorporado do Google Maps para fins ilustrativos.
+- Links de redes sociais e WhatsApp em modo demonstrativo.
+- Informações fictícias para apresentação do layout.
 
-## 📲 Pedido pelo WhatsApp
+### 📱 Layout Responsivo
+- Adaptação para computadores e notebooks.
+- Interface otimizada para smartphones.
+- Organização dos elementos para tablets.
+- Navegação adequada em diferentes tamanhos de tela.
 
-- Preenchimento dos dados do pedido
-- Informações de entrega
-- Seleção da forma de pagamento
-- Informação de troco quando necessário
-- Geração da mensagem do pedido
-- Envio do pedido pelo WhatsApp
-
-## 📍 Localização
-
-- Integração com Google Maps
-- Informações de localização da pizzaria
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Tecnologia	Utilização
-- HTML5	Estrutura da aplicação
-- CSS3	Estilização e layout responsivo
-- JavaScript Vanilla	Lógica e interações
-- Font Awesome	Ícones da interface
+| Tecnologia | Utilização |
+|---|---|
+| HTML5 | Estrutura da aplicação |
+| CSS3 | Estilização e layout responsivo |
+| JavaScript Vanilla | Lógica e interações |
+| Font Awesome | Ícones da interface |
+| Google Maps | Mapa ilustrativo incorporado |
+| LocalStorage | Armazenamento local do carrinho |
 
-## 📱 Responsividade
-O projeto foi desenvolvido para oferecer uma experiência consistente em diferentes dispositivos:
-
-💻 Desktop
-💻 Notebook
-📱 Smartphones
-📲 Tablets
-
-A interface foi pensada principalmente para facilitar a utilização do cardápio em dispositivos móveis.
+---
 
 ## 🧠 Destaques Técnicos
 
-- Desenvolvimento frontend sem frameworks
-- JavaScript Vanilla para gerenciamento das interações
-- Manipulação dinâmica do DOM
-- Sistema de carrinho desenvolvido no frontend
-- Cálculo automático dos valores
-- Lógica para montagem de pizzas meio a meio
-- Filtros e busca de produtos
-- Geração dinâmica de pedidos para WhatsApp
-- Layout responsivo com CSS
-- Integração com Google Maps
+- Desenvolvimento frontend sem frameworks.
+- Manipulação dinâmica do DOM.
+- Gerenciamento do carrinho com JavaScript.
+- Persistência de dados utilizando LocalStorage.
+- Cálculo automático dos valores dos produtos.
+- Lógica de personalização de pizzas meio a meio.
+- Busca e organização de produtos por categorias.
+- Layout responsivo com CSS.
+- Componentes visuais para contato e localização.
+- Interações demonstrativas para finalização do pedido.
+
+---
+
+## 📸 Prévia do Projeto
+
+![Prévia do cardápio Pizzaria AW](https://github.com/user-attachments/assets/14bee763-38d8-432f-b4d1-bc7b6a70c7bf)
+
+![Prévia dos produtos](https://github.com/user-attachments/assets/1eadbc07-2474-4640-944b-9cf34b461164)
+
+![Prévia da interface](https://github.com/user-attachments/assets/30d56463-7db1-4115-9f1d-e2ad03e3ca66)
+
+![Prévia do carrinho](https://github.com/user-attachments/assets/7527113b-9c54-421e-8d05-a1a72dabedbc)
+
+![Prévia do projeto](https://github.com/user-attachments/assets/cf3ba605-24ba-4708-80e4-6835265f4d9d)
+
+---
 
 ## 📂 Estrutura do Projeto
 
+```text
 Cardapio-Pizzaria-AW/
 │
 ├── assets/
 │   └── img/
 │
 ├── css/
+│   └── style.css
 │
 ├── js/
+│   └── script.js
 │
 ├── index.html
 └── README.md
+```
+
+---
 
 ## 🚀 Como Executar Localmente
-1. Clone o repositório
+
+1. Clone o repositório:
+
+```bash
 git clone https://github.com/awaldige/Cardapio-Pizzaria-AW.git
-2. Acesse a pasta
+```
+
+2. Acesse a pasta:
+
+```bash
 cd Cardapio-Pizzaria-AW
-3. Execute o projeto
+```
 
-Por ser uma aplicação frontend estática, não é necessário instalar dependências ou configurar um servidor backend.
+3. Abra o arquivo `index.html` no navegador.
 
-Abra o arquivo:
+Também é possível utilizar a extensão **Live Server** no Visual Studio Code para executar o projeto durante o desenvolvimento.
 
-index.html
-
-Também é possível utilizar o Live Server no VS Code para executar o projeto durante o desenvolvimento.
-
-
-
-## 📸 Prévia do Projeto
-
-![Captura de tela 2026-04-02 151232](https://github.com/user-attachments/assets/14bee763-38d8-432f-b4d1-bc7b6a70c7bf)
-![Captura de tela 2026-04-02 151123](https://github.com/user-attachments/assets/1eadbc07-2474-4640-944b-9cf34b461164)
-![Captura de tela 2026-04-02 151540](https://github.com/user-attachments/assets/30d56463-7db1-4115-9f1d-e2ad03e3ca66)
-![Captura de tela 2026-04-02 151515](https://github.com/user-attachments/assets/7527113b-9c54-421e-8d05-a1a72dabedbc)
-![Captura de tela 2026-04-02 151333](https://github.com/user-attachments/assets/cf3ba605-24ba-4708-80e4-6835265f4d9d)
-
+Por ser uma aplicação frontend estática, não é necessário instalar dependências ou configurar um backend.
 
 ---
 
 ## 🔮 Possíveis Melhorias Futuras
 
-- Painel administrativo para gerenciamento do cardápio
-- Banco de dados para produtos e categorias
-- Sistema de pedidos integrado a backend
-- Histórico de pedidos
-- Área administrativa para acompanhamento dos pedidos
-- Integração com diferentes formas de pagamento
-- Otimizações adicionais de desempenho e SEO
+- Painel administrativo para gerenciamento do cardápio.
+- Banco de dados para produtos e categorias.
+- Backend para processamento e gerenciamento de pedidos.
+- Histórico de pedidos.
+- Área administrativa para acompanhamento dos pedidos.
+- Integração real com WhatsApp.
+- Integração com diferentes formas de pagamento.
+- Otimizações adicionais de desempenho e SEO.
+
+---
 
 ## 🎯 Objetivo do Projeto
 
-O Cardápio Pizzaria AW foi desenvolvido como um projeto de portfólio para demonstrar a criação de uma solução frontend voltada para o segmento de alimentação.
+O **Cardápio Pizzaria AW** foi desenvolvido como projeto de portfólio para demonstrar a criação de uma solução frontend voltada ao segmento de alimentação.
 
-O projeto demonstra conhecimentos em HTML5, CSS3, JavaScript, responsividade, manipulação do DOM, lógica de carrinho e integração com WhatsApp.
+O projeto apresenta conhecimentos em HTML5, CSS3, JavaScript, responsividade, manipulação do DOM, lógica de carrinho e desenvolvimento de interfaces interativas.
+
+---
 
 ## 👨‍💻 Autor
 
-André Waldige
+**André Waldige**
 
-Desenvolvedor Full Stack — AW TECHNOLOGY
+Desenvolvedor Full Stack — **AW TECHNOLOGY**
 
-## 🔗 GitHub:
-https://github.com/awaldige
+🔗 GitHub: https://github.com/awaldige
+
+---
 
 ## 📄 Licença
 
 Projeto desenvolvido para portfólio profissional e demonstração de habilidades em desenvolvimento web.
+
+As informações de contato, localização e funcionalidades de pedido são ilustrativas e não representam uma operação comercial real.
