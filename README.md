@@ -90,15 +90,14 @@ https://cardapio-pizzaria-aw.vercel.app/
 
 ## 📸 Prévia do Projeto
 
-![Prévia do cardápio Pizzaria AW](https://github.com/user-attachments/assets/14bee763-38d8-432f-b4d1-bc7b6a70c7bf)
+<img width="1333" height="655" alt="home" src="https://github.com/user-attachments/assets/9cda9a7a-4e82-4748-bba3-bf52ebf33578" />
 
-![Prévia dos produtos](https://github.com/user-attachments/assets/1eadbc07-2474-4640-944b-9cf34b461164)
+<img width="1351" height="527" alt="image" src="https://github.com/user-attachments/assets/45678b5e-9997-4de3-8b12-090c6d8ed2f9" />
 
-![Prévia da interface](https://github.com/user-attachments/assets/30d56463-7db1-4115-9f1d-e2ad03e3ca66)
+<img width="1352" height="553" alt="carrinho aw" src="https://github.com/user-attachments/assets/6e2b0bd1-00c0-4241-931b-e708b19f7bfc" />
 
-![Prévia do carrinho](https://github.com/user-attachments/assets/7527113b-9c54-421e-8d05-a1a72dabedbc)
+<img width="1350" height="420" alt="footer aw" src="https://github.com/user-attachments/assets/af07eb4d-8ce9-47d4-baef-550620f3143e" />
 
-![Prévia do projeto](https://github.com/user-attachments/assets/cf3ba605-24ba-4708-80e4-6835265f4d9d)
 
 ---
 
