@@ -88,35 +88,137 @@
                         <input type="number" id="troco" placeholder="Troco para quanto?">
                     </div>
                     <button type="submit" class="btn-confirm">
-                        <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
+                        <i class="fas fa-clipboard-check"></i> FINALIZAR PEDIDO DEMONSTRATIVO
                     </button>
                 </form>
             </section>
         </div>
     </main>
 
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="assets/img/logo%20aw.png" alt="Logo">
-                    <h3>Pizzaria AW</h3>
-                    <p>O melhor sabor da região direto na sua mesa.</p>
+    
+<footer class="main-footer">
+    <div class="footer-container">
+
+        <div class="footer-grid">
+
+            <!-- COLUNA 1: IDENTIDADE -->
+            <section class="footer-brand">
+                <h3 class="footer-brand-heading">
+                    <i class="fas fa-pizza-slice"></i>
+                    Pizzaria AW
+                </h3>
+
+                <p class="footer-description">
+                    Uma experiência de sabor inspirada na tradição
+                    italiana, com pizzas preparadas para momentos especiais.
+                </p>
+
+                <span class="footer-demo-badge">
+                    <i class="fas fa-info-circle"></i>
+                    Projeto demonstrativo
+                </span>
+
+                <div class="footer-social"
+                     aria-label="Redes sociais demonstrativas">
+
+                    <a href="#" data-social="Instagram"
+                       aria-label="Instagram demonstrativo">
+                        <i class="fab fa-instagram"
+                           aria-hidden="true"></i>
+                    </a>
+
+                    <a href="#" data-social="Facebook"
+                       aria-label="Facebook demonstrativo">
+                        <i class="fab fa-facebook-f"
+                           aria-hidden="true"></i>
+                    </a>
+
+                    <a href="#" data-social="WhatsApp"
+                       aria-label="WhatsApp demonstrativo">
+                        <i class="fab fa-whatsapp"
+                           aria-hidden="true"></i>
+                    </a>
+
                 </div>
-                <div class="footer-map">
-                    <h4><i class="fas fa-map-marked-alt"></i> Onde Estamos</h4>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975!2d-46.6!3d-23.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMwJzAwLjAiUyA0NsKwMzYnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
-                        allowfullscreen="" loading="lazy"></iframe>
+            </section>
+
+            <!-- COLUNA 2: CONTATO -->
+            <section class="footer-contact">
+
+                <h4>
+                    <i class="fas fa-address-card"></i>
+                    Contato e Endereço
+                </h4>
+
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Telefone</strong>
+                        <span>(11) 3456-7890</span>
+                    </div>
                 </div>
-            </div>
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p class="copyright">© 2026 Pizzaria AW. Todos os direitos reservados.</p>
+
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Endereço</strong>
+                        <span>
+                            Rua dos Sabores, 125 — Vila Italiana,
+                            São Paulo – SP
+                        </span>
+                    </div>
+                </div>
+
+                <p class="footer-demo-notice">
+                    <i class="fas fa-info-circle"></i>
+                    Dados fictícios para demonstração.
+                </p>
+
+            </section>
+
+            <!-- COLUNA 3: LOCALIZAÇÃO -->
+            <section class="footer-map">
+
+                <h4>
+                    <i class="fas fa-map-marked-alt"></i>
+                    Onde Estamos
+                </h4>
+
+                <div class="footer-map-frame">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1975!2d-46.6!3d-23.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMwJzAwLjAiUyA0NsKwMzYnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr"
+                        title="Mapa ilustrativo da Pizzaria AW"
+                        loading="lazy"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <p class="map-caption">
+                    <i class="fas fa-info-circle"></i>
+                    Localização ilustrativa.
+                </p>
+
+            </section>
+
         </div>
-    </footer>
+
+        <!-- RODAPÉ INFERIOR -->
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Pizzaria AW.
+                Projeto demonstrativo.
+            </p>
+
+            <p class="footer-credit">
+                Desenvolvido por
+                <strong>AW TECHNOLOGY</strong>
+            </p>
+
+        </div>
+
+    </div>
+</footer>
 
     <script src="js/script.js"></script>
 </body>
